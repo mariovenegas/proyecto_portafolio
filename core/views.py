@@ -8,3 +8,13 @@ def portfolio(request):
 
     return render(request, "core/portfolio.html")
 
+def InicioCliente(request):
+
+    return render(request, "core/InicioCliente.html")   
+
+def SolicitarAsesoria(request):
+
+    return render(request, "core/SolicitarAsesoria.html")
+ 
+
+
