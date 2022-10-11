@@ -4,6 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+django = "*"
+django-ckeditor = "*"
+pillow = "*"
+pylint = "*"
+pylint-django = "*"
+cx-oracle = "*"
 
 [dev-packages]
 
