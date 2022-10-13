@@ -16,5 +16,8 @@ def SolicitarAsesoria(request):
 
     return render(request, "core/SolicitarAsesoria.html")
  
+def index2(request):
+    return render(request, "core/index2.html")
 
-
+def login(request):
+    return render(request, "core/login.html")
