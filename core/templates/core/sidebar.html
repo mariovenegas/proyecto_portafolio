@@ -11,7 +11,7 @@
       </div>
       <div class="profile_info">
         <span>Bienvenido,</span>
-        <h2>Administrador</h2>
+        <h2>{{ user.get_username }}</h2>
       </div>
     </div>
     <!-- /menu profile quick info -->
@@ -19,6 +19,7 @@
     <br />
   
     <!-- sidebar menu ADMINISTRADOR-->
+    {% if user.groups.first.name == "administradores" %}
     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
       <div class="menu_section">
         <ul class="nav side-menu">
@@ -33,11 +34,10 @@
           <li><a><i class="fa fa-newspaper-o"></i> Generar reporte cliente </a></li>
         </ul>
       </div>
-
     </div>
-    <!-- /sidebar menu -->
+    {% elif user.groups.first.name == "profesionales" %}
 
-    <!-- sidebar menu PROFESIONAL
+    <!-- sidebar menu PROFESIONAL-->
     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
       <div class="menu_section">
         <ul class="nav side-menu">
@@ -54,7 +54,18 @@
       </div>
 
     </div>
-     -->
+
+    {% elif user.groups.first.name == "clientes" %}
+    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+      <div class="menu_section">
+        <ul class="nav side-menu">
+          <li><a><i class="fa fa-user"></i> Solicitar asesoría especial </a></li>
+          <li><a><i class="fa fa-users"></i> Reportar accidente </a></li>
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+     
 
 
     <!-- /sidebar menu -->

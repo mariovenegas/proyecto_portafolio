@@ -1,11 +1,11 @@
 {% extends "core/base_site.html" %}
+{% load static %}
 
 {% block title %} Login {% endblock title %}
 
 {% block stylesheets %}
   {{ block.super }}
   <!-- Animate.css -->
-  {% load static %}
   <link href="{% static 'core/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
 {% endblock stylesheets %}
 
@@ -19,16 +19,20 @@
     <div class="login_wrapper">
       <div class="animate form login_form">
         <section class="login_content">
-          <form>
+          <form action="" method="POST">{% csrf_token %}
             <h1>Login Form</h1>
+            {% if form.non_field_error %}
+            <p style="color:red">Usuario o contraseña incorrectos</p>
+            {% endif %}
+
             <div>
-              <input type="text" class="form-control" placeholder="Username" required="" />
+              <input type="text" class="form-control" name="username" id="id_username" placeholder="Username" required="" />
             </div>
             <div>
-              <input type="password" class="form-control" placeholder="Password" required="" />
+              <input type="password" class="form-control" name="password" id="id_password" placeholder="Password" required="" />
             </div>
             <div>
-              <a class="btn btn-default submit" href="{% url 'index2' %}">Log in</a>
+              <input type="submit" class="btn btn-primary btn-block" value="Log in">
             </div>
 
             <div class="clearfix"></div>
