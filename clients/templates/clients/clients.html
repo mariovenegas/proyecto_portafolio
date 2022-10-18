@@ -1,0 +1,80 @@
+{% extends "core/base_site.html" %}
+
+{% block title %} Clientes {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <div class="">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h3>Administraci&oacute;n de Clientes</h3>
+                        <div class="clearfix"></div>
+                    </div>                  
+
+                    <div class="x_content">
+
+                        <div class="table-responsive">
+
+
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                <tr class="headings">
+                                        <th class="column-title">Rut</th>
+                                        <th class="column-title">Nombre</th>
+                                        <th class="column-title">Rubro</th>
+                                        <th class="column-title">Dirección</th>
+                                        <th class="column-title">Comuna</th>
+                                        <th class="column-title">Región</th>
+                                        <th colspan="2" class="column-title no-link last"><span class="nobr">Acci&oacute;n</span></th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr class="even pointer">
+                                        <td class=" " colspan="7">
+			                                <a href="{% url 'clients:create' %}" style="float:right;">Crear cliente</a>
+				                        </td>
+                                    </tr>
+
+                                    {% for client in clients %}
+                                    <tr class="even pointer">
+                                        <td class=" ">{{client.rut}}</td>
+                                        <td class=" ">{{client.name}}</td>
+                                        <td class=" ">{{client.sector}}</td>
+                                        <td class=" ">{{client.address}}</td>
+                                        <td class=" ">{{client.comune}}</td>
+                                        <td class=" ">{{client.region}}</td>
+                                        <td class=" last">
+                                            <div><a href="{% url 'clients:edit' client.id %}">Editar</a></div>
+                                        </td>
+                                        <td class=" last">
+                                            <div><span class="label label-danger">Eliminar</span></div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+
+{% endblock javascripts %}

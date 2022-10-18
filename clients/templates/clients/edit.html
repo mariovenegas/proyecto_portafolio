@@ -1,0 +1,92 @@
+{% extends "core/base_site.html" %}
+
+{% block title %} Editar Cliente {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <div class="">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h3>Editar Cliente</h3>
+                        <div class="clearfix"></div>
+                    </div>                  
+
+                    <div class="x_content">
+
+                        <form action="{% url 'clients:update' client.id %}" method="POST" class="form-horizontal form-label-left">
+                        {% csrf_token %}
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rut">Rut</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="rut" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{client.rut}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dv">DV</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="dv" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{client.dv}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="name" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{client.name}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sector">Rubro</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="sector" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{client.sector}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Direccion</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="address" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{client.address}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="comune">Comuna</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="comune" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{client.comune}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="region">Region</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="region" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{client.region}}">
+                            </div>
+                        </div>
+
+
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <input type="submit" name="submit" value="submit">
+                            </div>
+                        </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+
+{% endblock javascripts %}
