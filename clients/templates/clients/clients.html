@@ -38,8 +38,8 @@
 
                                 <tbody>
                                     <tr class="even pointer">
-                                        <td class=" " colspan="7">
-			                                <a href="{% url 'clients:create' %}" style="float:right;">Crear cliente</a>
+                                        <td class=" " colspan="8">
+			                                <button onclick="window.location.href='{% url 'clients:create' %}'" style="float:left;" class="btn btn-primary btn-xs">Crear cliente</button>
 				                        </td>
                                     </tr>
 
@@ -52,10 +52,10 @@
                                         <td class=" ">{{client.comune}}</td>
                                         <td class=" ">{{client.region}}</td>
                                         <td class=" last">
-                                            <div><a href="{% url 'clients:edit' client.id %}">Editar</a></div>
+                                            <div><button onclick="window.location.href='{% url 'clients:edit' client.id %}'" style="float:left;" class="btn btn-success btn-xs">Editar</button></div>
                                         </td>
                                         <td class=" last">
-                                            <div><span class="label label-danger">Eliminar</span></div>
+                                            <div><button onclick="window.location.href='{% url 'clients:delete' client.id %}'" style="float:left;" class="btn btn-danger btn-xs">Eliminar</button></div>
                                         </td>
                                     </tr>
                                     {% endfor %}
