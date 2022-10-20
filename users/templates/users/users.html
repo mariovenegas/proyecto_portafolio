@@ -1,0 +1,85 @@
+{% extends "core/base_site.html" %}
+
+{% block title %} Usuarios {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <div class="">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h3>Administraci&oacute;n de Usuarios</h3>
+                        <div class="clearfix"></div>
+                    </div>                  
+
+                    <div class="x_content">
+
+                        <div class="table-responsive">
+
+
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                <tr class="headings">
+                                        <th class="column-title">Rut</th>
+                                        <th class="column-title">Nombre</th>
+                                        <th class="column-title">Dirección</th>
+                                        <th class="column-title">Comuna</th>
+                                        <th class="column-title">Región</th>
+                                        <th class="column-title">Tipo</th>
+                                        <th class="column-title">Id Cliente</th>
+                                        <th class="column-title">Usuario</th>
+                                        <th colspan="2" class="column-title no-link last"><span class="nobr">Acci&oacute;n</span></th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr class="even pointer">
+                                        <td class=" " colspan="8">
+			                                <button onclick="window.location.href='{% url 'users:create' %}'" style="float:left;" class="btn btn-primary btn-xs">Crear usuario</button>
+				                        </td>
+                                    </tr>
+
+                                    {% for user in users %}
+                                    <tr class="even pointer">
+                                        <td class=" ">{{user.rut}}</td>
+                                        <td class=" ">{{user.name}}</td>
+                                        <td class=" ">{{user.address}}</td>
+                                        <td class=" ">{{user.comune}}</td>
+                                        <td class=" ">{{user.region}}</td>
+                                        <td class=" ">{{user.type}}</td>
+                                        <td class=" ">{{user.id_client}}</td>
+                                        <td class=" ">{{user.username}}</td>
+
+                                        <td class=" last">
+                                            <div><button onclick="window.location.href='{% url 'users:edit' user.id %}'" style="float:left;" class="btn btn-success btn-xs">Editar</button></div>
+                                        </td>
+                                        <td class=" last">
+                                            <div><button onclick="window.location.href='{% url 'users:delete' user.id %}'" style="float:left;" class="btn btn-danger btn-xs">Eliminar</button></div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+
+{% endblock javascripts %}

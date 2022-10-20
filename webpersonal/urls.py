@@ -23,6 +23,7 @@ urlpatterns = [
     path('index2/', views.index2, name="index2"),
     path('',views.index, name="index"),
     path('clients/',include('clients.urls')),
+    path('users/',include('users.urls')),
     #Paths de Auth
     path('accounts/',include('django.contrib.auth.urls')),
 ]
