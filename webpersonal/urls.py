@@ -24,6 +24,7 @@ urlpatterns = [
     path('',views.index, name="index"),
     path('clients/',include('clients.urls')),
     path('users/',include('users.urls')),
+    path('capacitations/',include('capacitations.urls')),
     #Paths de Auth
     path('accounts/',include('django.contrib.auth.urls')),
 ]
