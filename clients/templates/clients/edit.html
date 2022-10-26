@@ -55,17 +55,27 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="comune">Comuna</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="region">Region</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="comune" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{client.comune}}">
+                                <select id="regiones" class="form-control">
+                                {% for optregion in regions %}
+                                    <option value="{{optregion.region}}" {% if optregion.region == region.region %}selected{% endif %}>{{optregion.region}}</option>
+                                {% endfor %}
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="region">Region</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="commune">Comuna</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="region" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{client.region}}">
+                                <select id="commune" class="form-control">
+                                {% for commune in communes %}
+                                    <option value="{{commune.commune}}"  {% if commune.commune == client.commune.commune %}selected{% endif %}>{{commune.commune}}</option>
+                                {% endfor %}
+                                </select>
                             </div>
                         </div>
+
+
 
 
                         <div class="ln_solid"></div>
@@ -89,4 +99,31 @@
 {% block javascripts %}
   {{ block.super}}
 
+        <script>
+            $(document).ready(function(){
+                 $('select#regiones').change(function () {
+                     var optionSelected = $(this).find("option:selected");
+                     var valueSelected  = optionSelected.val();
+                     var region_name   = optionSelected.text();
+
+                     $.ajax({
+                        type: 'GET',
+                        url: '/communes/getcommunes',
+                        data : {
+                            'region_name' : region_name
+                        },
+                        dataType:'json',
+                        success : function(response){
+                            console.log(response);
+                            $("#commune option").remove();
+                            for (var i = 0; i< response.communes.length ; i++) {
+                                $("#commune").append('<option>'+ response.communes[i]['commune'] +'</option>');
+                            };
+                        }
+
+                    });
+
+                 });
+            });
+        </script>
 {% endblock javascripts %}

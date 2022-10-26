@@ -49,8 +49,8 @@
                                         <td class=" ">{{client.name}}</td>
                                         <td class=" ">{{client.sector}}</td>
                                         <td class=" ">{{client.address}}</td>
-                                        <td class=" ">{{client.comune}}</td>
-                                        <td class=" ">{{client.region}}</td>
+                                        <td class=" ">{{client.commune.commune}}</td>
+                                        <td class=" ">{{client.commune.region.region}}</td>
                                         <td class=" last">
                                             <div><button onclick="window.location.href='{% url 'clients:edit' client.id %}'" style="float:left;" class="btn btn-success btn-xs">Editar</button></div>
                                         </td>

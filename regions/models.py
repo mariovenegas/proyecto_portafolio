@@ -4,10 +4,10 @@ from django.db import models
 
 # Create your models here.
 
-class User(models.Model):
-    id_region = models.PositiveIntegerField(verbose_name="Identificador Region")
-    region = models.CharField(max_length=1, verbose_name="Nombre")
-
+class Region(models.Model):
+    region = models.CharField(max_length=100, verbose_name="Nombre")
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
+    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de actualización", null=True)
 
     class Meta:
         verbose_name = "region"

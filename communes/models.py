@@ -1,13 +1,16 @@
+from email.policy import default
 from ssl import create_default_context
 from typing_extensions import runtime
 from django.db import models
+from regions.models import Region
 
 # Create your models here.
 
-class User(models.Model):
-    id_commune = models.PositiveIntegerField(verbose_name="Identificador comuna")
-    commune = models.CharField(max_length=1, verbose_name="Comuna")
-
+class Commune(models.Model):
+    commune = models.CharField(max_length=100, verbose_name="Comuna")
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True)
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
+    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de actualización", null=True)
 
     class Meta:
         verbose_name = "comuna"

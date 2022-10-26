@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'clients.apps.ClientsConfig',
     'users.apps.UsersConfig',
     'capacitations.apps.CapacitationsConfig',
+    'communes.apps.CommunesConfig',
+    'regions.apps.RegionsConfig',
 ]
 
 MIDDLEWARE = [

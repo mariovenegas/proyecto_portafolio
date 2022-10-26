@@ -13,7 +13,7 @@ class Capacitation(models.Model):
     id_client = models.CharField(max_length=50, verbose_name="Identificador cliente")
     id_contract = models.CharField(max_length=50, verbose_name="Identificador contrato")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
-    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de actualización")
+    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de actualización", null=True)
 
     class Meta:
         verbose_name = "capacitacion"
