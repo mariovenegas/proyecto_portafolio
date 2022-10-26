@@ -39,13 +39,14 @@ def edit(request, client_id):
 
 def update(request, client_id):
     client = get_object_or_404(Client, pk=client_id)
+    commune = Commune.objects.get(commune=request.POST.get('commune'))
 
     client.rut = request.POST.get('rut')
     client.dv = request.POST.get('dv')
     client.name = request.POST.get('name')
     client.sector = request.POST.get('sector')
     client.address = request.POST.get('address')
-    client.commune = request.POST.get('comune')
+    client.commune = commune
 
     client.save()
     return HttpResponseRedirect('/clients/')

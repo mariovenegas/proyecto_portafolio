@@ -67,7 +67,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="commune">Comuna</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select id="commune" class="form-control">
+                                <select id="commune" name="commune" class="form-control">
                                 {% for commune in communes %}
                                     <option value="{{commune.commune}}"  {% if commune.commune == client.commune.commune %}selected{% endif %}>{{commune.commune}}</option>
                                 {% endfor %}

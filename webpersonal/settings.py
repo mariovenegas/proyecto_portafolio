@@ -86,7 +86,7 @@ DATABASES = {
 		'NAME': 'ORCL',
 		'USER': 'portafolio',
 		'PASSWORD': 'titulo',
-		'HOST': 'localhost',
+		'HOST': '192.168.1.113',
 		'PORT': '1521',
     }
 }

@@ -6,6 +6,37 @@
   {{ block.super }}
 {% endblock stylesheets %}
 
+{% block modal %}
+    
+    <!-- MODAL ELIMINAR -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="modal-eliminar-cliente">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"></span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Eliminar Cliente</h4>
+        </div>
+        <div class="modal-body">
+
+          <form  action="" method="POST" class="form-horizontal form-label-left">
+
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">Desea borrar?</label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <button class="btn btn-primary" type="button" id="cancelar-eliminar">Cancelar</button>
+                <button type="submit" class="btn btn-success">Eliminar</button>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+{% endblock modal %}
+
 {% block content %}
 <div class="right_col" role="main">
     <div class="">
@@ -55,7 +86,7 @@
                                             <div><button onclick="window.location.href='{% url 'clients:edit' client.id %}'" style="float:left;" class="btn btn-success btn-xs">Editar</button></div>
                                         </td>
                                         <td class=" last">
-                                            <div><button onclick="window.location.href='{% url 'clients:delete' client.id %}'" style="float:left;" class="btn btn-danger btn-xs">Eliminar</button></div>
+                                            <div><button onclick="confirm_delete('{{client.id}}');" style="float:left;" class="btn btn-danger btn-xs">Eliminar</button></div>
                                         </td>
                                     </tr>
                                     {% endfor %}
@@ -77,4 +108,15 @@
 {% block javascripts %}
   {{ block.super}}
 
+    <script>
+    function confirm_delete(clientid){
+        
+        var r = confirm("Esta seguro de eliminar ?");
+        if (r == true) {
+            alert(clientid);
+            
+        }
+
+    }
+    </script>
 {% endblock javascripts %}
