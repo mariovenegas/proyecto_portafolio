@@ -1,6 +1,6 @@
 {% extends "core/base_site.html" %}
 
-{% block title %} Capacitaciones {% endblock title %}
+{% block title %} Profesionales {% endblock title %}
 
 {% block stylesheets %}
   {{ block.super }}
@@ -14,7 +14,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h3>Administraci&oacute;n de Capacitaciones</h3>
+                        <h3>Administraci&oacute;n de Profesionales</h3>
                         <div class="clearfix"></div>
                     </div>                  
 
@@ -26,12 +26,12 @@
                             <table class="table table-striped jambo_table bulk_action">
                                 <thead>
                                 <tr class="headings">
-                                        <th class="column-title">Asistentes</th>
-                                        <th class="column-title">Profecional</th>
-                                        <th class="column-title">Tema</th>
-                                        <th class="column-title">Fecha</th>
-                                        <th class="column-title">Id Cliente</th>
-                                        <th class="column-title">Id Contrato</th>
+                                        <th class="column-title">Rut</th>
+                                        <th class="column-title">Nombre</th>
+                                        <th class="column-title">Email</th>
+                                        <th class="column-title">Numero</th>
+                                        <th class="column-title">Estado</th>
+                                        <th class="column-title">Usuario</th>
                                         <th colspan="2" class="column-title no-link last"><span class="nobr">Acci&oacute;n</span></th>
                                 </tr>
                                 </thead>
@@ -39,24 +39,24 @@
                                 <tbody>
                                     <tr class="even pointer">
                                         <td class=" " colspan="8">
-			                                <button onclick="window.location.href='{% url 'capacitations:create' %}'" style="float:left;" class="btn btn-primary btn-xs">Crear Capacitacion</button>
+			                                <button onclick="window.location.href='{% url 'professionals:create' %}'" style="float:left;" class="btn btn-primary btn-xs">Crear profesional</button>
 				                        </td>
                                     </tr>
 
-                                    {% for capacitation in capacitations %}
+                                    {% for professional in professionals %}
                                     <tr class="even pointer">
-                                        <td class=" ">{{capacitation.attendees}}</td>
-                                        <td class=" ">{{capacitation.professional}}</td>
-                                        <td class=" ">{{capacitation.topic}}</td>
-                                        <td class=" ">{{capacitation.date}}</td>
-                                        <td class=" ">{{capacitation.id_client}}</td>
-                                        <td class=" ">{{capacitation.id_contract}}</td>
+                                        <td class=" ">{{professional.rut}}</td>
+                                        <td class=" ">{{professional.name}}</td>
+                                        <td class=" ">{{professional.email}}</td>
+                                        <td class=" ">{{professional.phone}}</td>
+                                        <td class=" ">{{professional.state}}</td>
+                                        <td class=" ">{{professional.username}}</td>
 
                                         <td class=" last">
-                                            <div><button onclick="window.location.href='{% url 'capacitations:edit' capacitation.id %}'" style="float:left;" class="btn btn-success btn-xs">Editar</button></div>
+                                            <div><button onclick="window.location.href='{% url 'professionals:edit' professional.id %}'" style="float:left;" class="btn btn-success btn-xs">Editar</button></div>
                                         </td>
                                         <td class=" last">
-                                            <div><button onclick="window.location.href='{% url 'capacitations:delete' capacitation.id %}'" style="float:left;" class="btn btn-danger btn-xs">Eliminar</button></div>
+                                            <div><button onclick="window.location.href='{% url 'professionals:delete_professional' professional.id %}'" style="float:left;" class="btn btn-danger btn-xs">Eliminar</button></div>
                                         </td>
                                     </tr>
                                     {% endfor %}

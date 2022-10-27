@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'capacitations.apps.CapacitationsConfig',
     'communes.apps.CommunesConfig',
     'regions.apps.RegionsConfig',
+    'professionals.apps.ProfessionalsConfig',
 ]
 
 MIDDLEWARE = [
@@ -86,7 +87,7 @@ DATABASES = {
 		'NAME': 'ORCL',
 		'USER': 'portafolio',
 		'PASSWORD': 'titulo',
-		'HOST': 'localhost',
+		'HOST': '192.168.1.113',
 		'PORT': '1521',
     }
 }

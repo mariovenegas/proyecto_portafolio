@@ -14,7 +14,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h3>Borrar Cliente</h3>
+                        <h3>Borrar Profesional</h3>
                         <div class="clearfix"></div>
                     </div>                  
 
@@ -22,12 +22,12 @@
 
                         <form action="" method="POST" class="form-horizontal form-label-left">
                             {% csrf_token %}
-                            <h4>Esta seguro de borrar cliente?</h4>
+                            <h4>Esta seguro de borrar profesional?</h4>
                             <br>
-                            <h4>{{client.name}}</h4>
+                            <h4>{{professional.name}}</h4>
                             <br>
                             <button type="submit" name="submit" class="btn btn-danger">Aceptar</button>
-                            <button type="button"  onclick="window.location.href='{% url 'clients:clients' %}'" class="btn btn-primary">Cancelar</button>
+                            <button type="button"  onclick="window.location.href='{% url 'professionals:professionals' %}'" class="btn btn-primary">Cancelar</button>
                         </form>
                     </div>
 

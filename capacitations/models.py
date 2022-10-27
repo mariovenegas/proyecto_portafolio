@@ -7,7 +7,7 @@ from django.db import models
 
 class Capacitation(models.Model):
     attendees = models.CharField(max_length=200, verbose_name="Asistentes")
-    profecional = models.CharField(max_length=20, verbose_name="Profesional")
+    professional = models.CharField(max_length=20, verbose_name="Profesional", null=True)
     topic = models.CharField(max_length=500, verbose_name="Tema de capacitacion")
     date = models.CharField(max_length=100, verbose_name="Fecha de capacitacion")
     id_client = models.CharField(max_length=50, verbose_name="Identificador cliente")
