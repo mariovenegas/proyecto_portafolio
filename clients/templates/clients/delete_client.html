@@ -21,12 +21,13 @@
                     <div class="x_content">
 
                         <form action="" method="POST" class="form-horizontal form-label-left">
-                        {% csrf_token %}
-                        <h4>Esta seguro de borrar cliente?</h4>
-                        <br>
-                        <button type="submit" name="submit" class="btn btn-danger btn-xs">Si</button>
-                        <button type="button"  onclick="window.location.href='{% url 'clients:clients' %}'" class="btn btn-primary btn-xs">Cancel</button>
-
+                            {% csrf_token %}
+                            <h4>Esta seguro de borrar cliente?</h4>
+                            <br>
+                            <h4>{{client.name}}</h4>
+                            <br>
+                            <button type="submit" name="submit" class="btn btn-danger">Aceptar</button>
+                            <button type="button"  onclick="window.location.href='{% url 'clients:clients' %}'" class="btn btn-primary">Cancelar</button>
                         </form>
                     </div>
 

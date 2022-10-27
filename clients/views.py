@@ -63,4 +63,4 @@ def delete_client(request, client_id):
         client.delete()
         return HttpResponseRedirect('/clients/')
     
-    return render(request, 'clients/delete_client.html')
+    return render(request, 'clients/delete_client.html', {'client': client})
