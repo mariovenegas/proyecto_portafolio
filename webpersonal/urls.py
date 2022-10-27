@@ -27,6 +27,7 @@ urlpatterns = [
     path('capacitations/',include('capacitations.urls')),
     path('communes/',include('communes.urls')),
     path('professionals/',include('professionals.urls')),
+    path('administrators/',include('administrators.urls')),
     #Paths de Auth
     path('accounts/',include('django.contrib.auth.urls')),
 ]

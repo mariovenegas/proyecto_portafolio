@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'communes.apps.CommunesConfig',
     'regions.apps.RegionsConfig',
     'professionals.apps.ProfessionalsConfig',
+    'administrators.apps.AdministratorsConfig',
 ]
 
 MIDDLEWARE = [
