@@ -55,3 +55,12 @@ def delete(request, client_id):
     client = get_object_or_404(Client, pk=client_id)
     client.delete()
     return HttpResponseRedirect('/clients/')
+
+def delete_client(request, client_id):
+    client = get_object_or_404(Client, pk=client_id)
+    
+    if request.method == 'POST':
+        client.delete()
+        return HttpResponseRedirect('/clients/')
+    
+    return render(request, 'clients/delete_client.html')
