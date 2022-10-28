@@ -1,0 +1,69 @@
+{% extends "core/base_site.html" %}
+
+{% block title %} Editar Actividad de mejora {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <div class="">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h3>Editar Actividad de mejora</h3>
+                        <div class="clearfix"></div>
+                    </div>                  
+
+                    <div class="x_content">
+
+                        <form action="{% url 'improvements:update' improvement.id %}" method="POST" class="form-horizontal form-label-left">
+                        {% csrf_token %}
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="case">Caso</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="case" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{improvement.case}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="client">Cliente</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="client" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{improvement.client}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="action">Actividad de mejora</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="action" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{improvement.action}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="professional">Profesional a cargo</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="professional" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{improvement.professional}}">
+                            </div>
+                        </div>
+
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" name="submit" class="btn btn-success">Grabar</button>
+                                <button type="button"  onclick="window.location.href='{% url 'improvements:improvements' %}'" class="btn btn-primary">Cancelar</button>
+                            </div>
+                        </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
