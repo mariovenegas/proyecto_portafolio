@@ -1,0 +1,67 @@
+{% extends "core/base_site.html" %}
+
+{% block title %} Editar Reporte {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <div class="">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h3>Editar Reporte</h3>
+                        <div class="clearfix"></div>
+                    </div>                  
+
+                    <div class="x_content">
+
+                        <form action="{% url 'reportaccidents:update' reportaccident.id %}" method="POST" class="form-horizontal form-label-left">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Descripcion del accidente</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="description" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{reportaccident.description}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="zone">Area del accidente</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="zone" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{reportaccident.zone}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Fecha del accidente</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="date" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{reportaccident.date}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="hour">Hora del accidente</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="hour" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{reportaccident.hour}}">
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" name="submit" class="btn btn-success">Grabar</button>
+                                <button type="button"  onclick="window.location.href='{% url 'reportaccidents:reportaccidents' %}'" class="btn btn-primary">Cancelar</button>
+                            </div>
+                        </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
