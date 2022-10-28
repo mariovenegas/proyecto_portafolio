@@ -44,9 +44,9 @@
                                     {% for improvement in improvements %}
                                     <tr class="even pointer">
                                         <td class=" ">{{improvement.case}}</td>
-                                        <td class=" ">{{improvement.client}}</td>
+                                        <td class=" ">{{improvement.client.name}}</td>
                                         <td class=" ">{{improvement.action}}</td>
-                                        <td class=" ">{{improvement.professional}}</td>
+                                        <td class=" ">{{improvement.professional.name}}</td>
 
                                         <td class=" last">
                                             <div><button onclick="window.location.href='{% url 'improvements:edit' improvement.id %}'" style="float:left;" class="btn btn-success btn-xs">Editar</button></div>

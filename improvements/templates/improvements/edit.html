@@ -33,7 +33,11 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="client">Cliente</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="client" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{improvement.client}}">
+                                <select id="client" class="form-control">
+                                {% for client in clients %}
+                                    <option value="{{client.name}}" {% if client.name == improvement.client.name %}selected{% endif %}>{{client.name}}</option>
+                                {% endfor %}
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -45,10 +49,13 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="professional">Profesional a cargo</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="professional" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{improvement.professional}}">
+                                <select id="profesionales" class="form-control">
+                                {% for professional in professionals %}
+                                    <option value="{{professional.name}}" {% if professional.name == improvement.professional.name %}selected{% endif %}>{{professional.name}}</option>
+                                {% endfor %}
+                                </select>
                             </div>
                         </div>
-
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-12 text-center">
