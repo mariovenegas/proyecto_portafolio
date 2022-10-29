@@ -1,0 +1,23 @@
+from django.db import models
+from ssl import create_default_context
+from typing_extensions import runtime
+from django.db import models
+from clients.models import Client
+from professionals.models import Professional
+
+# Create your models here.
+
+class Advisory(models.Model):
+    attendees = models.CharField(max_length=200, verbose_name="Asistentes")
+    topic = models.CharField(max_length=500, verbose_name="Tema de asesoria")
+    date = models.CharField(max_length=100, verbose_name="Fecha de asesoria")
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, null=True)
+    professional = models.ForeignKey(Professional, on_delete=models.CASCADE, null=True)
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
+    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de actualización", null=True)
+
+    class Meta:
+        verbose_name = "capacitacion"
+        verbose_name_plural = "capacitaciones"
+        ordering = [ '-created']
+    

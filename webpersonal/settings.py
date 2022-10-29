@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'administrators.apps.AdministratorsConfig',
     'reportaccidents.apps.ReportaccidentsConfig',
     'improvements.apps.ImprovementsConfig',
+    'advisorys.apps.AdvisorysConfig',
 ]
 
 MIDDLEWARE = [

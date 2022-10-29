@@ -30,6 +30,7 @@ urlpatterns = [
     path('administrators/',include('administrators.urls')),
     path('reportaccidents/',include('reportaccidents.urls')),
     path('improvements/',include('improvements.urls')),
+    path('advisorys/',include('advisorys.urls')),
     #Paths de Auth
     path('accounts/',include('django.contrib.auth.urls')),
 ]

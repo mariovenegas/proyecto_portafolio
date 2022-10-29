@@ -1,0 +1,82 @@
+{% extends "core/base_site.html" %}
+
+{% block title %} Editar Actividad de mejora {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <div class="">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h3>Editar Actividad de mejora</h3>
+                        <div class="clearfix"></div>
+                    </div>                  
+
+                    <div class="x_content">
+
+                        <form action="{% url 'advisorys:update' advisory.id %}" method="POST" class="form-horizontal form-label-left">
+                        {% csrf_token %}
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="attendees">Asistentes</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="attendees" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{advisory.attendees}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="client">Cliente</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select id="client" name="client" class="form-control">
+                                {% for client in clients %}
+                                    <option value="{{client.name}}" {% if client.name == advisory.client.name %}selected{% endif %}>{{client.name}}</option>
+                                {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="topic">Tema de la asesoria</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="topic" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{advisory.topic}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">TFecha de la asesoria</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="date" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{advisory.date}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="professional">Profesional a cargo</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select id="professional"  name="professional" class="form-control">
+                                {% for professional in professionals %}
+                                    <option value="{{professional.name}}" {% if professional.name == advisory.professional.name %}selected{% endif %}>{{professional.name}}</option>
+                                {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" name="submit" class="btn btn-success">Grabar</button>
+                                <button type="button"  onclick="window.location.href='{% url 'advisorys:advisorys' %}'" class="btn btn-primary">Cancelar</button>
+                            </div>
+                        </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

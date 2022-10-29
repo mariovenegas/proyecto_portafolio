@@ -1,0 +1,79 @@
+{% extends "core/base_site.html" %}
+
+{% block title %} Ingresar Asesoria {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <div class="">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h3> Ingresar Asesoria </h3>
+                        <div class="clearfix"></div>
+                    </div>                  
+
+                    <div class="x_content">
+
+                        <div class="table-responsive">
+
+
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                <tr class="headings">
+                                        <th class="column-title">Asistentes</th>
+                                        <th class="column-title">Cliente</th>
+                                        <th class="column-title">Tema de la asesoria</th>
+                                        <th class="column-title">Fecha de la asesoria</th>
+                                        <th class="column-title">Profesional responsable</th>
+                                        <th colspan="2" class="column-title no-link last"><span class="nobr">Acci&oacute;n</span></th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr class="even pointer">
+                                        <td class=" " colspan="8">
+			                                <button onclick="window.location.href='{% url 'advisorys:create' %}'" style="float:left;" class="btn btn-primary btn-xs">Ingresar Asesoria</button>
+				                        </td>
+                                    </tr>
+
+                                    {% for advisory in advisorys %}
+                                    <tr class="even pointer">
+                                        <td class=" ">{{advisory.attendees}}</td>
+                                        <td class=" ">{{advisory.client.name}}</td>
+                                        <td class=" ">{{advisory.topic}}</td>
+                                        <td class=" ">{{advisory.date}}</td>
+                                        <td class=" ">{{advisory.professional.name}}</td>
+
+                                        <td class=" last">
+                                            <div><button onclick="window.location.href='{% url 'advisorys:edit' advisory.id %}'" style="float:left;" class="btn btn-success btn-xs">Editar</button></div>
+                                        </td>
+                                        <td class=" last">
+                                            <div><button onclick="window.location.href='{% url 'advisorys:delete_advisorys' advisory.id %}'" style="float:left;" class="btn btn-danger btn-xs">Eliminar</button></div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+
+{% endblock javascripts %}
