@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'improvements.apps.ImprovementsConfig',
     'advisorys.apps.AdvisorysConfig',
     'services.apps.ServicesConfig',
+    'contracts.apps.ContractsConfig',
 ]
 
 MIDDLEWARE = [

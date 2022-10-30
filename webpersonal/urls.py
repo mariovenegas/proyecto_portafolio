@@ -31,7 +31,7 @@ urlpatterns = [
     path('reportaccidents/',include('reportaccidents.urls')),
     path('improvements/',include('improvements.urls')),
     path('advisorys/',include('advisorys.urls')),
-    path('services/',include('services.urls')),
+    path('contracts/',include('contracts.urls')),
     
     #Paths de Auth
     path('accounts/',include('django.contrib.auth.urls')),
