@@ -4,10 +4,12 @@ from typing_extensions import runtime
 from django.db import models
 from clients.models import Client
 from professionals.models import Professional
+from contracts.models import Contract
 
 # Create your models here.
 
 class Advisory(models.Model):
+    contract = models.ForeignKey(Contract, on_delete=models.CASCADE, null=True)
     attendees = models.CharField(max_length=200, verbose_name="Asistentes")
     topic = models.CharField(max_length=500, verbose_name="Tema de asesoria")
     date = models.CharField(max_length=100, verbose_name="Fecha de asesoria")

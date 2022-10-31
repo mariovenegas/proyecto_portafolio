@@ -25,6 +25,16 @@
 
 
                         <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="contract">Numero de contrato</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select id="contract" name="contract" class="form-control">
+                                {% for contract in contracts %}
+                                    <option value="{{contract.contract}}" {% if contract.contract == advisory.contract.contract %}selected{% endif %}>{{contract.contract}}</option>
+                                {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="attendees">Asistentes</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" name="attendees" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{advisory.attendees}}">

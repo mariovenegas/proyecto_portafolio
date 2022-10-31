@@ -26,12 +26,12 @@
                             <table class="table table-striped jambo_table bulk_action">
                                 <thead>
                                 <tr class="headings">
+                                        <th class="column-title">Contrato</th>
+                                        <th class="column-title">Cliente</th>
+                                        <th class="column-title">Profesional</th>
                                         <th class="column-title">Asistentes</th>
-                                        <th class="column-title">Profecional</th>
                                         <th class="column-title">Tema</th>
                                         <th class="column-title">Fecha</th>
-                                        <th class="column-title">Id Cliente</th>
-                                        <th class="column-title">Id Contrato</th>
                                         <th colspan="2" class="column-title no-link last"><span class="nobr">Acci&oacute;n</span></th>
                                 </tr>
                                 </thead>
@@ -45,18 +45,18 @@
 
                                     {% for capacitation in capacitations %}
                                     <tr class="even pointer">
+                                        <td class=" ">{{capacitation.contract.contract}}</td>
+                                        <td class=" ">{{capacitation.client.name}}</td>
+                                        <td class=" ">{{capacitation.profesional.name}}</td>
                                         <td class=" ">{{capacitation.attendees}}</td>
-                                        <td class=" ">{{capacitation.professional}}</td>
                                         <td class=" ">{{capacitation.topic}}</td>
                                         <td class=" ">{{capacitation.date}}</td>
-                                        <td class=" ">{{capacitation.id_client}}</td>
-                                        <td class=" ">{{capacitation.id_contract}}</td>
 
                                         <td class=" last">
                                             <div><button onclick="window.location.href='{% url 'capacitations:edit' capacitation.id %}'" style="float:left;" class="btn btn-success btn-xs">Editar</button></div>
                                         </td>
                                         <td class=" last">
-                                            <div><button onclick="window.location.href='{% url 'capacitations:delete' capacitation.id %}'" style="float:left;" class="btn btn-danger btn-xs">Eliminar</button></div>
+                                            <div><button onclick="window.location.href='{% url 'capacitations:delete_capacitations' capacitation.id %}'" style="float:left;" class="btn btn-danger btn-xs">Eliminar</button></div>
                                         </td>
                                     </tr>
                                     {% endfor %}

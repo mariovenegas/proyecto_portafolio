@@ -26,6 +26,7 @@
                             <table class="table table-striped jambo_table bulk_action">
                                 <thead>
                                 <tr class="headings">
+                                        <th class="column-title">Numero de contrato</th>
                                         <th class="column-title">Asistentes</th>
                                         <th class="column-title">Cliente</th>
                                         <th class="column-title">Tema de la asesoria</th>
@@ -44,6 +45,7 @@
 
                                     {% for advisory in advisorys %}
                                     <tr class="even pointer">
+                                        <td class=" ">{{advisory.contract.contract}}</td>
                                         <td class=" ">{{advisory.attendees}}</td>
                                         <td class=" ">{{advisory.client.name}}</td>
                                         <td class=" ">{{advisory.topic}}</td>
