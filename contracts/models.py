@@ -7,7 +7,7 @@ from services.models import Service
 # Create your models here.
 
 class Contract(models.Model):
-    numbercontract = models.CharField(max_length=50, verbose_name="Numero del contrato")
+    contract = models.CharField(max_length=50, verbose_name="Numero del contrato")
     description = models.CharField(max_length=500, verbose_name="Descripcion del contrato")
     datestart = models.CharField(max_length=100, verbose_name="Fecha de comienzo")
     dateend = models.CharField(max_length=100, verbose_name="Fecha de finalizacion")

@@ -1,6 +1,6 @@
 {% extends "core/base_site.html" %}
 
-{% block title %} Editar Contrato {% endblock title %}
+{% block title %} Editar Visita {% endblock title %}
 
 {% block stylesheets %}
   {{ block.super }}
@@ -14,20 +14,24 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h3>Editar Contrato</h3>
+                        <h3>Editar Visita</h3>
                         <div class="clearfix"></div>
                     </div>                  
 
                     <div class="x_content">
 
-                        <form action="{% url 'contracts:update' contract.id %}" method="POST" class="form-horizontal form-label-left">
+                        <form action="{% url 'visits:update' visit.id %}" method="POST" class="form-horizontal form-label-left">
                         {% csrf_token %}
 
 
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="numbercontract">Numero del contrato</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="contract">Numero de contrato</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="contract" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{contract.contract}}">
+                                <select id="contract" name="contract" class="form-control">
+                                {% for contract in contracts %}
+                                    <option value="{{contract.contract}}" {% if contract.contract == visit.contract.contract %}selected{% endif %}>{{contract.contract}}</option>
+                                {% endfor %}
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -41,38 +45,32 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Descripcion del contrato</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="professional">Profesional a cargo</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="description" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{contract.description}}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="datestart">Fecha de inicio del contrato</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="datestart" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{contract.datestart}}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dateend">Fecha de final del contrato</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="dateend" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{contract.dateend}}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="service">Servicio</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select id="service"  name="service" class="form-control">
-                                {% for service in services %}
-                                    <option value="{{service.service}}" {% if service.service == contract.service.service %}selected{% endif %}>{{service.service}}</option>
+                                <select id="professional"  name="professional" class="form-control">
+                                {% for professional in professionals %}
+                                    <option value="{{professional.name}}" {% if professional.name == visit.professional.name %}selected{% endif %}>{{professional.name}}</option>
                                 {% endfor %}
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="reason">Razon de visita</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="reason" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{visit.reason}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Fecha de visita</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="date" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{visit.date}}">
                             </div>
                         </div>
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-12 text-center">
                                 <button type="submit" name="submit" class="btn btn-success">Grabar</button>
-                                <button type="button"  onclick="window.location.href='{% url 'contracts:contracts' %}'" class="btn btn-primary">Cancelar</button>
+                                <button type="button"  onclick="window.location.href='{% url 'visits:visits' %}'" class="btn btn-primary">Cancelar</button>
                             </div>
                         </div>
 

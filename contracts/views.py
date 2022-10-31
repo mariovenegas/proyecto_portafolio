@@ -18,7 +18,7 @@ def create(request):
     return render(request, 'contracts/create.html', {'clients':clients, 'services':services})
 
 def insert(request):
-    numbercontract = request.POST.get('numbercontract')
+    contract = request.POST.get('contract')
     client = request.POST.get('client')
     description = request.POST.get('description')
     datestart = request.POST.get('datestart')
@@ -26,7 +26,7 @@ def insert(request):
     service = request.POST.get('service')
     selected_client = Client.objects.get(name=client)
     selected_service = Service.objects.get(service=service)
-    contract = Contract(numbercontract=numbercontract, client=selected_client, description=description, datestart=datestart, dateend=dateend, service=selected_service  )
+    contract = Contract(contract=contract, client=selected_client, description=description, datestart=datestart, dateend=dateend, service=selected_service  )
     contract.save()
 
     return HttpResponseRedirect('/contracts/')
@@ -42,7 +42,7 @@ def update(request, contract_id):
     client = Client.objects.get(name=request.POST.get('client'))
     service = Service.objects.get(service=request.POST.get('service'))
 
-    contract.numbercontract = request.POST.get('numbercontract')
+    contract.contract = request.POST.get('contract')
     contract.description = request.POST.get('description')
     contract.datestart = request.POST.get('datestart')
     contract.dateend = request.POST.get('dateend')

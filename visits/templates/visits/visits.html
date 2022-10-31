@@ -1,6 +1,6 @@
 {% extends "core/base_site.html" %}
 
-{% block title %}  Contratos {% endblock title %}
+{% block title %}  Visitas {% endblock title %}
 
 {% block stylesheets %}
   {{ block.super }}
@@ -28,10 +28,9 @@
                                 <tr class="headings">
                                         <th class="column-title">Numero de contrato</th>
                                         <th class="column-title">Cliente</th>
-                                        <th class="column-title">Descripcion del contrato</th>
-                                        <th class="column-title">Fecha de inicio del contrato</th>
-                                        <th class="column-title">Fecha de final del contrato</th>
-                                        <th class="column-title">Servicio</th>
+                                        <th class="column-title">Profesional</th>
+                                        <th class="column-title">Motivo de visita</th>
+                                        <th class="column-title">Fecha de visita</th>
                                         <th colspan="2" class="column-title no-link last"><span class="nobr">Acci&oacute;n</span></th>
                                 </tr>
                                 </thead>
@@ -39,24 +38,23 @@
                                 <tbody>
                                     <tr class="even pointer">
                                         <td class=" " colspan="8">
-			                                <button onclick="window.location.href='{% url 'contracts:create' %}'" style="float:left;" class="btn btn-primary btn-xs">Crear contrato</button>
+			                                <button onclick="window.location.href='{% url 'visits:create' %}'" style="float:left;" class="btn btn-primary btn-xs">Crear visita</button>
 				                        </td>
                                     </tr>
 
-                                    {% for contract in contracts %}
+                                    {% for visit in visits %}
                                     <tr class="even pointer">
-                                        <td class=" ">{{contract.contract}}</td>
-                                        <td class=" ">{{contract.client.name}}</td>
-                                        <td class=" ">{{contract.description}}</td>
-                                        <td class=" ">{{contract.datestart}}</td>
-                                        <td class=" ">{{contract.dateend}}</td>
-                                        <td class=" ">{{contract.service.service}}</td>
+                                        <td class=" ">{{visit.contract.contract}}</td>
+                                        <td class=" ">{{visit.client.name}}</td>
+                                         <td class=" ">{{visit.profesional.name}}</td>
+                                        <td class=" ">{{visit.reason}}</td>
+                                        <td class=" ">{{visit.date}}</td>
 
                                         <td class=" last">
-                                            <div><button onclick="window.location.href='{% url 'contracts:edit' contract.id %}'" style="float:left;" class="btn btn-success btn-xs">Editar</button></div>
+                                            <div><button onclick="window.location.href='{% url 'visits:edit' visit.id %}'" style="float:left;" class="btn btn-success btn-xs">Editar</button></div>
                                         </td>
                                         <td class=" last">
-                                            <div><button onclick="window.location.href='{% url 'contracts:delete_contracts' contract.id %}'" style="float:left;" class="btn btn-danger btn-xs">Eliminar</button></div>
+                                            <div><button onclick="window.location.href='{% url 'visits:delete_visits' visit.id %}'" style="float:left;" class="btn btn-danger btn-xs">Eliminar</button></div>
                                         </td>
                                     </tr>
                                     {% endfor %}

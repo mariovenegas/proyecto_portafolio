@@ -1,6 +1,6 @@
 {% extends "core/base_site.html" %}
 
-{% block title %} Borrar Contrato {% endblock title %}
+{% block title %} Borrar Visita {% endblock title %}
 
 {% block stylesheets %}
   {{ block.super }}
@@ -14,7 +14,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h3>Borrar Contrato</h3>
+                        <h3>Borrar Visita</h3>
                         <div class="clearfix"></div>
                     </div>                  
 
@@ -22,12 +22,12 @@
 
                         <form action="" method="POST" class="form-horizontal form-label-left">
                             {% csrf_token %}
-                            <h4>Esta seguro de borrar contrato?</h4>
+                            <h4>Esta seguro de borrar Visita?</h4>
                             <br>
-                            <h4>{{contract.contract}}</h4>
+                            <h4>{{visit.reason}}</h4>
                             <br>
                             <button type="submit" name="submit" class="btn btn-danger">Aceptar</button>
-                            <button type="button"  onclick="window.location.href='{% url 'contracts:contracts' %}'" class="btn btn-primary">Cancelar</button>
+                            <button type="button"  onclick="window.location.href='{% url 'visits:visits' %}'" class="btn btn-primary">Cancelar</button>
                         </form>
                     </div>
 
