@@ -32,20 +32,23 @@ def insert(request):
     username = request.POST.get('username')
     password = request.POST.get('password')
     
-    administrator = Administrator(rut=rut, dv=dv, name=name, email=email, phone=phone, state=state,username=username,password=password  )
-    administrator.save()
 
-    user = User.objects.create_user(username)
+    try:
+        user = User.objects.create_user(username)
+        user.is_superuser=0
+        user.is_staff=0
+        user.is_active=1
+        user.save()
+        u = User.objects.get(username=username)
+        u.set_password(password)
+        g = Group.objects.get(name='administradores')
+        u.groups.add(g.id)
+        u.save()
+        administrator = Administrator(rut=rut, dv=dv, name=name, email=email, phone=phone, state=state,username=username,password=password  )
+        administrator.save()
+    except:
+        print('Error al crear usuario ' + username)
 
-    user.is_superuser=0
-    user.is_staff=0
-    user.is_active=1
-    user.save()
-    u = User.objects.get(username=username)
-    u.set_password(password)
-    g = Group.objects.get(name='administradores')
-    u.groups.add(g.id)
-    u.save()
 
     return HttpResponseRedirect('/administrators/')
 
@@ -81,12 +84,14 @@ def delete_administrator(request, administrator_id):
     administrator = get_object_or_404(Administrator, pk=administrator_id)
     
     if request.method == 'POST':
-        
-        u = User.objects.get(username=administrator.username)
-        g = Group.objects.get(name='administradores')
-        u.groups.remove(g.id)
-        u.is_active=0
-        u.save()
+        try:
+            u = User.objects.get(username=administrator.username)
+            g = Group.objects.get(name='administradores')
+            u.groups.remove(g.id)
+            u.is_active=0
+            u.save()
+        except:
+            print('Error al borrar usuario '+administrator.username)
         
         administrator.delete()
         return HttpResponseRedirect('/administrators/')
