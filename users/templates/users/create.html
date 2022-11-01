@@ -23,77 +23,78 @@
                         <form action="{% url 'users:insert' %}" method="POST" class="form-horizontal form-label-left">
                         {% csrf_token %}
 
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="clientes">Cliente</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="client" name="client" class="form-control">
+                                    {% for client in clients %}
+                                        <option value="{{client.name}}">{{client.name}}</option>
+                                    {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rut">Rut</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" name="rut" autocomplete="off" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dv">DV</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" name="dv" autocomplete="off" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" name="name" autocomplete="off" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Direccion</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" name="address" autocomplete="off" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="region">Region</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="regiones" class="form-control">
+                                    {% for region in regions %}
+                                        <option value="{{region.region}}">{{region.region}}</option>
+                                    {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="commune">Comuna</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="commune" id="commune" class="form-control">
+                                    </select>
+                                </div>
+                            </div>
 
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rut">Rut</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="rut" autocomplete="off" class="form-control col-md-7 col-xs-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">Usuario</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" name="username" autocomplete="off" class="form-control col-md-7 col-xs-12">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dv">DV</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="dv" autocomplete="off" class="form-control col-md-7 col-xs-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Clave</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" name="password" autocomplete="off" class="form-control col-md-7 col-xs-12">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="name" autocomplete="off" class="form-control col-md-7 col-xs-12">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Direccion</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="address" autocomplete="off" class="form-control col-md-7 col-xs-12">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="comune">Comuna</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="comune" autocomplete="off" class="form-control col-md-7 col-xs-12">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="region">Region</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="region" autocomplete="off" class="form-control col-md-7 col-xs-12">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">Tipo</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="type" autocomplete="off" class="form-control col-md-7 col-xs-12">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_client">Id Cliente</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="id_client" autocomplete="off" class="form-control col-md-7 col-xs-12">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">Usuario</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="username" autocomplete="off" class="form-control col-md-7 col-xs-12">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Clave</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="password" autocomplete="off" class="form-control col-md-7 col-xs-12">
-                            </div>
-                        </div>
 
-                        <div class="ln_solid"></div>
-                        <div class="form-group">
-                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button type="submit" name="submit" class="btn btn-success">Grabar</button>
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" name="submit" class="btn btn-success">Aceptar</button>
+                                    <button type="button"  onclick="window.location.href='{% url 'users:users' %}'" class="btn btn-primary">Cancelar</button>
+                                </div>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <!--<button onclick="window.location.href=''" style="float:left;" class="btn btn-primary">Cancelar</button>-->
-                            </div>
-                        </div>
 
                         </form>
                     </div>
@@ -108,5 +109,33 @@
 
 {% block javascripts %}
   {{ block.super}}
+
+        <script>
+            $(document).ready(function(){
+                 $('select#regiones').change(function () {
+                     var optionSelected = $(this).find("option:selected");
+                     var valueSelected  = optionSelected.val();
+                     var region_name   = optionSelected.text();
+
+                     $.ajax({
+                        type: 'GET',
+                        url: '/communes/getcommunes',
+                        data : {
+                            'region_name' : region_name
+                        },
+                        dataType:'json',
+                        success : function(response){
+                            console.log(response);
+                            $("#commune option").remove();
+                            for (var i = 0; i< response.communes.length ; i++) {
+                                $("#commune").append('<option>'+ response.communes[i]['commune'] +'</option>');
+                            };
+                        }
+
+                    });
+
+                 });
+            });
+        </script>
 
 {% endblock javascripts %}

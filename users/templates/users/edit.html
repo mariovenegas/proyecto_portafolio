@@ -1,6 +1,6 @@
 {% extends "core/base_site.html" %}
 
-{% block title %} Editar Usuario {% endblock title %}
+{% block title %} Editar Usuario cliente{% endblock title %}
 
 {% block stylesheets %}
   {{ block.super }}
@@ -14,7 +14,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h3>Editar Usuario</h3>
+                        <h3>Editar Usuario cliente</h3>
                         <div class="clearfix"></div>
                     </div>                  
 
@@ -23,7 +23,16 @@
                         <form action="{% url 'users:update' user.id %}" method="POST" class="form-horizontal form-label-left">
                         {% csrf_token %}
 
-
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="client">Cliente</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select id="client" name="client" class="form-control">
+                                {% for client in clients %}
+                                    <option value="{{client.name}}" {% if client.name == user.client.name %}selected{% endif %}>{{client.name}}</option>
+                                {% endfor %}
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rut">Rut</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -49,29 +58,26 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="comune">Comuna</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="comune" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{user.comune}}">
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="region">Region</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="region" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{user.region}}">
+                                <select id="regiones" class="form-control">
+                                {% for region in regions %}
+                                    <option value="{{region.region}}" {% if region.region == user.commune.region.region %}selected{% endif %}>{{region.region}}</option>
+                                {% endfor %}
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">Tipo</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="commune">Comuna</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="type" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{user.type}}">
+                                <select id="commune" name="commune" class="form-control">
+                                {% for commune in communes %}
+                                    <option value="{{commune.commune}}"  {% if commune.commune == user.commune.commune %}selected{% endif %}>{{commune.commune}}</option>
+                                {% endfor %}
+                                </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_client">Id Cliente</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="id_client" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{user.id_client}}">
-                            </div>
-                        </div>
+
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">Usuario</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -86,9 +92,11 @@
                         </div>
 
                         <div class="ln_solid"></div>
+
                         <div class="form-group">
-                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <input type="submit" name="submit" value="submit">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" name="submit" class="btn btn-success">Aceptar</button>
+                                <button type="button"  onclick="window.location.href='{% url 'users:users' %}'" class="btn btn-primary">Cancelar</button>
                             </div>
                         </div>
 

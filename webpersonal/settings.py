@@ -94,7 +94,7 @@ DATABASES = {
 		'NAME': 'ORCL',
 		'USER': 'portafolio',
 		'PASSWORD': 'titulo',
-		'HOST': '192.168.1.113',
+		'HOST': 'localhost',
 		'PORT': '1521',
     }
 }
@@ -143,3 +143,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Auth redirects
 LOGIN_REDIRECT_URL = 'index2'
+LOGOUT_REDIRECT_URL = 'index'

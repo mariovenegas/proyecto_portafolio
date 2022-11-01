@@ -2,19 +2,27 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User, Group
 from .models import Administrator
 
 # Create your views here.
 def administrators(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
 
     administrators = Administrator.objects.all()
     return render(request, "administrators/administrators.html", {'administrators':administrators})
 
 def create(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
     return render(request, 'administrators/create.html')
 
 def insert(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     rut = request.POST.get('rut')
     dv = request.POST.get('dv')
     name = request.POST.get('name')
@@ -27,13 +35,31 @@ def insert(request):
     administrator = Administrator(rut=rut, dv=dv, name=name, email=email, phone=phone, state=state,username=username,password=password  )
     administrator.save()
 
+    user = User.objects.create_user(username)
+
+    user.is_superuser=0
+    user.is_staff=0
+    user.is_active=1
+    user.save()
+    u = User.objects.get(username=username)
+    u.set_password(password)
+    g = Group.objects.get(name='administradores')
+    u.groups.add(g.id)
+    u.save()
+
     return HttpResponseRedirect('/administrators/')
 
 def edit(request, administrator_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     administrator = get_object_or_404(Administrator, pk=administrator_id)
     return render(request, 'administrators/edit.html', {'administrator': administrator})
 
 def update(request, administrator_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     administrator = get_object_or_404(Administrator, pk=administrator_id)
 
     administrator.rut = request.POST.get('rut')
@@ -47,15 +73,21 @@ def update(request, administrator_id):
     administrator.save()
     return HttpResponseRedirect('/administrators/')
 
-def delete(request, administrator_id):
-    administrator = get_object_or_404(Administrator, pk=administrator_id)
-    administrator.delete()
-    return HttpResponseRedirect('/administrators/')
 
 def delete_administrator(request, administrator_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     administrator = get_object_or_404(Administrator, pk=administrator_id)
     
     if request.method == 'POST':
+        
+        u = User.objects.get(username=administrator.username)
+        g = Group.objects.get(name='administradores')
+        u.groups.remove(g.id)
+        u.is_active=0
+        u.save()
+        
         administrator.delete()
         return HttpResponseRedirect('/administrators/')
     

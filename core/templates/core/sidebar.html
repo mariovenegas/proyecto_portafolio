@@ -23,15 +23,17 @@
     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
       <div class="menu_section">
         <ul class="nav side-menu">
-          <li><a><i class="fa fa-user"></i> Profesionales </a></li>
-          <li><a><i class="fa fa-users"></i> Clientes </a></li>
-          <li><a><i class="fa fa-key"></i> Administradores </a></li>
-          <li><a><i class="fa fa-money"></i> Controlar pago </a></li>
-          <li><a><i class="fa fa-info"></i> Informar profesionales </a></li>
-          <li><a><i class="fa fa-calculator"></i> Calcular accidentabilidad </a></li>
-          <li><a><i class="fa fa-search"></i> Visualizar actividades </a></li>
-          <li><a><i class="fa fa-info-circle"></i> Notificar atrasos </a></li>
-          <li><a><i class="fa fa-newspaper-o"></i> Generar reporte cliente </a></li>
+          <li><a href="{% url 'professionals:professionals' %}"><i class="fa fa-user"></i> Profesionales </a></li>
+          <li><a href="{% url 'clients:clients' %}"><i class="fa fa-users"></i> Clientes </a></li>
+          <li><a href="{% url 'administrators:administrators' %}"><i class="fa fa-key"></i> Administradores </a></li>
+          <li><a href="{% url 'users:users' %}"><i class="fa fa-users"></i> Usuarios de cliente </a></li>
+          <li><a href="{% url 'contracts:contracts' %}"><i class="fa fa-money"></i> Contratos </a></li>
+          <li><a href=""><i class="fa fa-money"></i> Controlar pago </a></li>
+          <li><a href=""><i class="fa fa-info"></i> Informar profesionales </a></li>
+          <li><a href=""><i class="fa fa-calculator"></i> Calcular accidentabilidad </a></li>
+          <li><a href=""><i class="fa fa-search"></i> Visualizar actividades </a></li>
+          <li><a href=""><i class="fa fa-info-circle"></i> Notificar atrasos </a></li>
+          <li><a href=""><i class="fa fa-newspaper-o"></i> Generar reporte cliente </a></li>
         </ul>
       </div>
     </div>
@@ -41,15 +43,13 @@
     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
       <div class="menu_section">
         <ul class="nav side-menu">
-          <li><a><i class="fa fa-user"></i> Crear capacitacion </a></li>
-          <li><a><i class="fa fa-users"></i> Planificar visita </a></li>
-          <li><a><i class="fa fa-key"></i> Clientes </a></li>
-          <li><a><i class="fa fa-money"></i> Crear caso de asesoria </a></li>
-          <li><a><i class="fa fa-info"></i> Ingresar asesoria </a></li>
-          <li><a><i class="fa fa-calculator"></i> Crear checklist </a></li>
-          <li><a><i class="fa fa-search"></i> Responder checklist </a></li>
-          <li><a><i class="fa fa-info-circle"></i> Ingresar actividad de mejora </a></li>
-          <li><a><i class="fa fa-newspaper-o"></i> Revisar actividad de mejora </a></li>
+          <li><a href="{% url 'capacitations:capacitations' %}"><i class="fa fa-user"></i> Crear capacitacion </a></li>
+          <li><a href="{% url 'visits:visits' %}"><i class="fa fa-users"></i> Planificar visita </a></li>
+          <li><a href="{% url 'clients:clients' %}"><i class="fa fa-key"></i> Clientes </a></li>
+          <li><a href="{% url 'improvements:improvements' %}"><i class="fa fa-info-circle"></i> Actividades de mejoras </a></li>
+          <li><a href="{% url 'advisorys:advisorys' %}"><i class="fa fa-money"></i> Asesorías </a></li>
+          <li><a href=""><i class="fa fa-calculator"></i> Crear checklist </a></li>
+          <li><a href=""><i class="fa fa-search"></i> Responder checklist </a></li>
         </ul>
       </div>
 
@@ -60,7 +60,7 @@
       <div class="menu_section">
         <ul class="nav side-menu">
           <li><a><i class="fa fa-user"></i> Solicitar asesoría especial </a></li>
-          <li><a><i class="fa fa-users"></i> Reportar accidente </a></li>
+          <li><a href="{% url 'reportaccidents:reportaccidents' %}"><i class="fa fa-users"></i> Reportar accidente </a></li>
         </ul>
       </div>
     </div>

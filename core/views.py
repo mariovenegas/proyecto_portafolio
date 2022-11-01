@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse
 
 # Create your views here.
 def index(request):
@@ -17,7 +17,7 @@ def SolicitarAsesoria(request):
     return render(request, "core/SolicitarAsesoria.html")
  
 def index2(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
     return render(request, "core/index2.html")
 
-def login(request):
-    return render(request, "core/login.html")

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Capacitation
 from clients.models import Client
 from professionals.models import Professional
@@ -8,17 +8,24 @@ from contracts.models import Contract
 
 # Create your views here.
 def capacitations(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
 
     capacitations = Capacitation.objects.all()
     return render(request, "capacitations/capacitations.html", {'capacitations':capacitations})
 
 def create(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
     clients = Client.objects.all()
     professionals = Professional.objects.all()
     contracts = Contract.objects.all()
     return render(request, 'capacitations/create.html', {'clients':clients, 'professionals':professionals, 'contracts':contracts})
 
 def insert(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     attendees = request.POST.get('attendees')
     professional = request.POST.get('professional')
     topic = request.POST.get('topic')
@@ -34,6 +41,8 @@ def insert(request):
     return HttpResponseRedirect('/capacitations/')
 
 def edit(request, capacitation_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
     clients = Client.objects.all()
     professionals = Professional.objects.all()
     contracts = Contract.objects.all()
@@ -41,6 +50,9 @@ def edit(request, capacitation_id):
     return render(request, 'capacitations/edit.html', {'capacitation': capacitation, 'clients': clients, 'professionals': professionals, 'contracts':contracts})
 
 def update(request, capacitation_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     capacitation = get_object_or_404(Capacitation, pk=capacitation_id)
     client = Client.objects.get(name=request.POST.get('client'))
     professional = Professional.objects.get(name=request.POST.get('professional'))
@@ -57,11 +69,16 @@ def update(request, capacitation_id):
     return HttpResponseRedirect('/capacitations/')
 
 def delete(request, capacitation_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     capacitation = get_object_or_404(Capacitation, pk=capacitation_id)
     capacitation.delete()
     return HttpResponseRedirect('/capacitations/')
 
 def delete_capacitations(request, capacitation_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
     capacitation = get_object_or_404(Capacitation, pk=capacitation_id)
     
     if request.method == 'POST':

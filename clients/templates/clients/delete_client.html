@@ -1,0 +1,46 @@
+{% extends "core/base_site.html" %}
+
+{% block title %} Borrar Cliente {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <div class="">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h3>Borrar Cliente</h3>
+                        <div class="clearfix"></div>
+                    </div>                  
+
+                    <div class="x_content">
+
+                        <form action="" method="POST" class="form-horizontal form-label-left">
+                            {% csrf_token %}
+                            <h4>Esta seguro de borrar cliente?</h4>
+                            <br>
+                            <h4>{{client.name}}</h4>
+                            <br>
+                            <button type="submit" name="submit" class="btn btn-danger">Aceptar</button>
+                            <button type="button"  onclick="window.location.href='{% url 'clients:clients' %}'" class="btn btn-primary">Cancelar</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+
+
+{% endblock javascripts %}

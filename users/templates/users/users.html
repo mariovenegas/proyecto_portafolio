@@ -1,6 +1,6 @@
 {% extends "core/base_site.html" %}
 
-{% block title %} Usuarios {% endblock title %}
+{% block title %} Usuarios de cliente {% endblock title %}
 
 {% block stylesheets %}
   {{ block.super }}
@@ -14,7 +14,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h3>Administraci&oacute;n de Usuarios</h3>
+                        <h3>Administraci&oacute;n de Usuarios de cliente</h3>
                         <div class="clearfix"></div>
                     </div>                  
 
@@ -26,13 +26,13 @@
                             <table class="table table-striped jambo_table bulk_action">
                                 <thead>
                                 <tr class="headings">
+                                        <th class="column-title">Cliente</th>
                                         <th class="column-title">Rut</th>
+                                        <th class="column-title">Dv</th>
                                         <th class="column-title">Nombre</th>
                                         <th class="column-title">Dirección</th>
-                                        <th class="column-title">Comuna</th>
                                         <th class="column-title">Región</th>
-                                        <th class="column-title">Tipo</th>
-                                        <th class="column-title">Id Cliente</th>
+                                        <th class="column-title">Comuna</th>
                                         <th class="column-title">Usuario</th>
                                         <th colspan="2" class="column-title no-link last"><span class="nobr">Acci&oacute;n</span></th>
                                 </tr>
@@ -40,27 +40,26 @@
 
                                 <tbody>
                                     <tr class="even pointer">
-                                        <td class=" " colspan="8">
-			                                <button onclick="window.location.href='{% url 'users:create' %}'" style="float:left;" class="btn btn-primary btn-xs">Crear usuario</button>
+                                        <td class=" " colspan="10">
+			                                <button onclick="window.location.href='{% url 'users:create' %}'" style="float:left;" class="btn btn-primary btn-xs">Crear usuario cliente</button>
 				                        </td>
                                     </tr>
 
                                     {% for user in users %}
                                     <tr class="even pointer">
+                                        <td class=" ">{{user.client.name}}</td>
                                         <td class=" ">{{user.rut}}</td>
+                                        <td class=" ">{{user.dv}}</td>
                                         <td class=" ">{{user.name}}</td>
                                         <td class=" ">{{user.address}}</td>
-                                        <td class=" ">{{user.comune}}</td>
-                                        <td class=" ">{{user.region}}</td>
-                                        <td class=" ">{{user.type}}</td>
-                                        <td class=" ">{{user.id_client}}</td>
+                                        <td class=" ">{{user.commune.region.region}}</td>
+                                        <td class=" ">{{user.commune.commune}}</td>
                                         <td class=" ">{{user.username}}</td>
-
                                         <td class=" last">
                                             <div><button onclick="window.location.href='{% url 'users:edit' user.id %}'" style="float:left;" class="btn btn-success btn-xs">Editar</button></div>
                                         </td>
                                         <td class=" last">
-                                            <div><button onclick="window.location.href='{% url 'users:delete' user.id %}'" style="float:left;" class="btn btn-danger btn-xs">Eliminar</button></div>
+                                            <div><button onclick="window.location.href='{% url 'users:delete_user' user.id %}'" style="float:left;" class="btn btn-danger btn-xs">Eliminar</button></div>
                                         </td>
                                     </tr>
                                     {% endfor %}
