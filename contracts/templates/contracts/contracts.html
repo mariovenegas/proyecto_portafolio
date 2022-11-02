@@ -48,8 +48,8 @@
                                         <td class=" ">{{contract.contract}}</td>
                                         <td class=" ">{{contract.client.name}}</td>
                                         <td class=" ">{{contract.description}}</td>
-                                        <td class=" ">{{contract.datestart}}</td>
-                                        <td class=" ">{{contract.dateend}}</td>
+                                        <td class=" ">{{contract.datestart|date:'Y-m-d'}}</td>
+                                        <td class=" ">{{contract.dateend|date:'Y-m-d'}}</td>
                                         <td class=" ">{{contract.service.service}}</td>
 
                                         <td class=" last">
