@@ -10,17 +10,25 @@ from contracts.models import Contract
 
 # Create your views here.
 def visits(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
 
     visits = Visit.objects.all()
     return render(request, "visits/visits.html", {'visits':visits})
 
 def create(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     clients = Client.objects.all()
     professionals = Professional.objects.all()
     contracts = Contract.objects.all()
     return render(request, 'visits/create.html', {'clients':clients, 'professionals':professionals, 'contracts':contracts})
 
 def insert(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     contract = request.POST.get('contract')
     reason = request.POST.get('reason')
     client = request.POST.get('client')
@@ -35,6 +43,9 @@ def insert(request):
     return HttpResponseRedirect('/visits/')
 
 def edit(request, visit_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     clients = Client.objects.all()
     professionals = Professional.objects.all()
     contracts = Contract.objects.all()
@@ -42,6 +53,9 @@ def edit(request, visit_id):
     return render(request, 'visits/edit.html', {'visit': visit, 'clients': clients, 'professionals': professionals, 'contracts':contracts})
 
 def update(request, visit_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     visit = get_object_or_404(Visit, pk=visit_id)
     client = Client.objects.get(name=request.POST.get('client'))
     professional = Professional.objects.get(name=request.POST.get('professional'))
@@ -57,11 +71,17 @@ def update(request, visit_id):
     return HttpResponseRedirect('/visits/')
 
 def delete(request, visit_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     visit = get_object_or_404(Visit, pk=visit_id)
     visit.delete()
     return HttpResponseRedirect('/visits/')
 
 def delete_visits(request, visit_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+        
     visit = get_object_or_404(Visit, pk=visit_id)
     
     if request.method == 'POST':

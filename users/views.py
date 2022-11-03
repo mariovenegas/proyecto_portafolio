@@ -9,17 +9,25 @@ from clients.models import Client
 
 # Create your views here.
 def users(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
 
     users = UserClient.objects.all()
     return render(request, "users/users.html", {'users':users})
 
 def create(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     regions = Region.objects.all()
     clients = Client.objects.all()
     return render(request, 'users/create.html', {'clients':clients, 'regions':regions})
 
 
 def insert(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     client = request.POST.get('client')
     rut = request.POST.get('rut')
     dv = request.POST.get('dv')
@@ -48,6 +56,9 @@ def insert(request):
     return HttpResponseRedirect('/users/')
 
 def edit(request, user_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     regions = Region.objects.all()
     communes = Commune.objects.all()
     clients = Client.objects.all()
@@ -55,6 +66,9 @@ def edit(request, user_id):
     return render(request, 'users/edit.html', {'user': user, 'clients': clients, 'regions': regions, 'communes': communes})
 
 def update(request, user_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     user = get_object_or_404(UserClient, pk=user_id)
     commune = Commune.objects.get(commune=request.POST.get('commune'))
     client = Client.objects.get(name=request.POST.get('client'))
@@ -71,6 +85,7 @@ def update(request, user_id):
     return HttpResponseRedirect('/users/')
 
 def delete_user(request, user_id):
+
     if not(request.user.is_authenticated):
         return redirect("index")
 

@@ -56,7 +56,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="action">Razon de visita</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="reason" autocomplete="off" class="form-control col-md-7 col-xs-12">
+                            <input type="text" name="reason" autocomplete="off" class="form-control col-md-7 col-xs-12" maxlength="500" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -69,7 +69,7 @@
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-12 text-center">
-                                <button type="submit" name="submit" class="btn btn-success">Grabar</button>
+                                <button type="submit" name="submit" class="btn btn-success">Aceptar</button>
                                 <button type="button"  onclick="window.location.href='{% url 'visits:visits' %}'" class="btn btn-primary">Cancelar</button>
                             </div>
                         </div>
@@ -87,5 +87,40 @@
 
 {% block javascripts %}
   {{ block.super}}
+    <script>
+    $(function() {
+        $('input[name="date"]').daterangepicker({
+            singleDatePicker: true,
+    		locale: {
+        		format:  'YYYY-MM-DD',
+        		applyLabel: "Aceptar",
+        		cancelLabel: "Cancelar",
+        		daysOfWeek: [
+            		"Do",
+            		"Lu",
+            		"Ma",
+            		"Mi",
+            		"Ju",
+            		"Vi",
+            		"Sa"
+        		],
+        		monthNames: [
+            		"Enero",
+            		"Febrero",
+            		"Marzo",
+            		"Abril",
+            		"Mayo",
+            		"Junio",
+            		"Julio",
+            		"Agosto",
+            		"Septiembre",
+            		"Octubre",
+            		"Noviembre",
+            		"Diciembre"
+        		]
+    		}
+        });
+    });
+    </script>
 
 {% endblock javascripts %}

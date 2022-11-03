@@ -7,14 +7,22 @@ from .models import Reportaccident
 
 # Create your views here.
 def reportaccidents(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
 
     reportaccidents = Reportaccident.objects.all()
     return render(request, "reportaccidents/reportaccidents.html", {'reportaccidents':reportaccidents})
 
 def create(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     return render(request, 'reportaccidents/create.html')
 
 def insert(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     description = request.POST.get('description')
     zone = request.POST.get('zone')
     date = request.POST.get('date')
@@ -30,6 +38,9 @@ def edit(request, reportaccident_id):
     return render(request, 'reportaccidents/edit.html', {'reportaccident': reportaccident})
 
 def update(request, reportaccident_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     reportaccident = get_object_or_404(Reportaccident, pk=reportaccident_id)
 
     reportaccident.description = request.POST.get('description')
@@ -40,11 +51,17 @@ def update(request, reportaccident_id):
     return HttpResponseRedirect('/reportaccidents/')
 
 def delete(request, reportaccident_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     reportaccident = get_object_or_404(Reportaccident, pk=reportaccident_id)
     reportaccident.delete()
     return HttpResponseRedirect('/reportaccidents/')
 
 def delete_reportaccident(request, reportaccident_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+        
     reportaccident = get_object_or_404(Reportaccident, pk=reportaccident_id)
     
     if request.method == 'POST':

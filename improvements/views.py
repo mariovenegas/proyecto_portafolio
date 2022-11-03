@@ -8,16 +8,24 @@ from clients.models import Client
 from professionals.models import Professional
 # Create your views here.
 def improvements(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
 
     improvements = Improvement.objects.all()
     return render(request, "improvements/improvements.html", {'improvements':improvements})
 
 def create(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     clients = Client.objects.all()
     professionals = Professional.objects.all()
     return render(request, 'improvements/create.html', {'clients':clients, 'professionals':professionals})
 
 def insert(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     case = request.POST.get('case')
     client = request.POST.get('client')
     action = request.POST.get('action')
@@ -30,27 +38,41 @@ def insert(request):
     return HttpResponseRedirect('/improvements/')
 
 def edit(request, improvement_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     clients = Client.objects.all()
     professionals = Professional.objects.all()
     improvement = get_object_or_404(Improvement, pk=improvement_id)
     return render(request, 'improvements/edit.html', {'improvement': improvement, 'clients': clients, 'professionals': professionals},)
 
 def update(request, improvement_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     improvement = get_object_or_404(Improvement, pk=improvement_id)
+    client = Client.objects.get(name=request.POST.get('client'))
+    professional = Professional.objects.get(name=request.POST.get('professional'))
 
     improvement.case = request.POST.get('case')
-    improvement.client = request.POST.get('client')
+    improvement.client = client
     improvement.action = request.POST.get('action')
-    improvement.professional = request.POST.get('professional')
+    improvement.professional = professional
     improvement.save()
     return HttpResponseRedirect('/improvements/')
 
 def delete(request, improvement_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     improvement = get_object_or_404(Improvement, pk=improvement_id)
     improvement.delete()
     return HttpResponseRedirect('/improvements/')
 
 def delete_improvements(request, improvement_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+        
     improvement = get_object_or_404(Improvement, pk=improvement_id)
     
     if request.method == 'POST':

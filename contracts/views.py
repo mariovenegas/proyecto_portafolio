@@ -8,16 +8,24 @@ from clients.models import Client
 from services.models import Service
 # Create your views here.
 def contracts(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
 
     contracts = Contract.objects.all()
     return render(request, "contracts/contracts.html", {'contracts':contracts})
 
 def create(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     clients = Client.objects.all()
     services = Service.objects.all()
     return render(request, 'contracts/create.html', {'clients':clients, 'services':services})
 
 def insert(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     contract = request.POST.get('contract')
     client = request.POST.get('client')
     description = request.POST.get('description')
@@ -32,12 +40,18 @@ def insert(request):
     return HttpResponseRedirect('/contracts/')
 
 def edit(request, contract_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     clients = Client.objects.all()
     services = Service.objects.all()
     contract = get_object_or_404(Contract, pk=contract_id)
     return render(request, 'contracts/edit.html', {'contract': contract, 'clients': clients, 'services': services})
 
 def update(request, contract_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     contract = get_object_or_404(Contract, pk=contract_id)
     client = Client.objects.get(name=request.POST.get('client'))
     service = Service.objects.get(service=request.POST.get('service'))
@@ -53,11 +67,17 @@ def update(request, contract_id):
     return HttpResponseRedirect('/contracts/')
 
 def delete(request, contract_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     contract = get_object_or_404(Contract, pk=contract_id)
     contract.delete()
     return HttpResponseRedirect('/contracts/')
 
 def delete_contracts(request, contract_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+        
     contract = get_object_or_404(Contract, pk=contract_id)
     
     if request.method == 'POST':

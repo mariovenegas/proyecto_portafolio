@@ -26,7 +26,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Caso</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="case" autocomplete="off" class="form-control col-md-7 col-xs-12">
+                            <input type="text" name="case" autocomplete="off" class="form-control col-md-7 col-xs-12"maxlength="500"  required >
                             </div>
                         </div>
                         <div class="form-group">
@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="action">Accion a tomar</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="action" autocomplete="off" class="form-control col-md-7 col-xs-12">
+                            <input type="text" name="action" autocomplete="off" class="form-control col-md-7 col-xs-12" maxlength="1000"  required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -59,7 +59,7 @@
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-12 text-center">
-                                <button type="submit" name="submit" class="btn btn-success">Grabar</button>
+                                <button type="submit" name="submit" class="btn btn-success">Aceptar</button>
                                 <button type="button"  onclick="window.location.href='{% url 'improvements:improvements' %}'" class="btn btn-primary">Cancelar</button>
                             </div>
                         </div>

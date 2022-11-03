@@ -15,12 +15,18 @@ def advisorys(request):
     return render(request, "advisorys/advisorys.html", {'advisorys':advisorys})
 
 def create(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     clients = Client.objects.all()
     professionals = Professional.objects.all()
     contracts = Contract.objects.all()
     return render(request, 'advisorys/create.html', {'clients':clients, 'professionals':professionals, 'contracts':contracts})
 
 def insert(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     contract = request.POST.get('contract')
     attendees = request.POST.get('attendees')
     client = request.POST.get('client')
@@ -36,6 +42,9 @@ def insert(request):
     return HttpResponseRedirect('/advisorys/')
 
 def edit(request, advisory_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     clients = Client.objects.all()
     professionals = Professional.objects.all()
     contracts = Contract.objects.all()
@@ -43,6 +52,9 @@ def edit(request, advisory_id):
     return render(request, 'advisorys/edit.html', {'advisory': advisory, 'clients': clients, 'professionals': professionals, 'contracts':contracts})
 
 def update(request, advisory_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     advisory = get_object_or_404(Advisory, pk=advisory_id)
     client = Client.objects.get(name=request.POST.get('client'))
     professional = Professional.objects.get(name=request.POST.get('professional'))
@@ -59,11 +71,17 @@ def update(request, advisory_id):
     return HttpResponseRedirect('/advisorys/')
 
 def delete(request, advisory_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
     advisory = get_object_or_404(Advisory, pk=advisory_id)
     advisory.delete()
     return HttpResponseRedirect('/advisorys/')
 
 def delete_advisorys(request, advisory_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+        
     advisory = get_object_or_404(Advisory, pk=advisory_id)
     
     if request.method == 'POST':
