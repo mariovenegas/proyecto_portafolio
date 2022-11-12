@@ -23,17 +23,23 @@
     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
       <div class="menu_section">
         <ul class="nav side-menu">
-          <li><a href="{% url 'professionals:professionals' %}"><i class="fa fa-user"></i> Profesionales </a></li>
-          <li><a href="{% url 'clients:clients' %}"><i class="fa fa-users"></i> Clientes </a></li>
-          <li><a href="{% url 'administrators:administrators' %}"><i class="fa fa-key"></i> Administradores </a></li>
-          <li><a href="{% url 'users:users' %}"><i class="fa fa-users"></i> Usuarios de cliente </a></li>
-          <li><a href="{% url 'contracts:contracts' %}"><i class="fa fa-money"></i> Contratos </a></li>
-          <li><a href=""><i class="fa fa-money"></i> Controlar pago </a></li>
-          <li><a href=""><i class="fa fa-info"></i> Informar profesionales </a></li>
-          <li><a href=""><i class="fa fa-calculator"></i> Calcular accidentabilidad </a></li>
-          <li><a href=""><i class="fa fa-search"></i> Visualizar actividades </a></li>
-          <li><a href=""><i class="fa fa-info-circle"></i> Notificar atrasos </a></li>
-          <li><a href=""><i class="fa fa-newspaper-o"></i> Generar reporte cliente </a></li>
+          <li class><a href="{% url 'professionals:professionals' %}"><i class="fa fa-user"></i> Profesionales </a></li>
+          <li class><a href="{% url 'clients:clients' %}"><i class="fa fa-users"></i> Clientes </a></li>
+          <li class><a href="{% url 'administrators:administrators' %}"><i class="fa fa-key"></i> Administradores </a></li>
+          <li class><a href="{% url 'users:users' %}"><i class="fa fa-users"></i> Usuarios de cliente </a></li>
+          <li class><a href="{% url 'contracts:contracts' %}"><i class="fa fa-money"></i> Contratos </a></li>
+          <li class><a href=""><i class="fa fa-money"></i> Controlar pago </a></li>
+          <li class><a href=""><i class="fa fa-info"></i> Informar profesionales </a></li>
+          <li class><a href=""><i class="fa fa-calculator"></i> Calcular accidentabilidad </a></li>
+          <li class><a><i class="fa fa-search"></i> Visualizar actividades <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu" style="display: none;">
+              <li><a href="">Asesorías</a></li>
+              <li><a href="">Capacitaciones</a></li>
+              <li><a href="">Mejoras</a></li>
+              <li><a href="">Visitas</a></li>
+            </ul>
+          </li>
+          <li class><a href=""><i class="fa fa-newspaper-o"></i> Generar reporte cliente </a></li>
         </ul>
       </div>
     </div>
