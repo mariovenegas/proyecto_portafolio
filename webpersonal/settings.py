@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'services.apps.ServicesConfig',
     'contracts.apps.ContractsConfig',
     'visits.apps.VisitsConfig',
+    'checklists.apps.ChecklistsConfig',
 ]
 
 MIDDLEWARE = [
