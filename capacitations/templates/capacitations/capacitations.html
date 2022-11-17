@@ -26,19 +26,19 @@
                             <table class="table table-striped jambo_table bulk_action">
                                 <thead>
                                 <tr class="headings">
-                                        <th class="column-title">Contrato</th>
+                                        <th class="column-title">Numero de contrato</th>
                                         <th class="column-title">Cliente</th>
-                                        <th class="column-title">Profesional</th>
                                         <th class="column-title">Asistentes</th>
                                         <th class="column-title">Tema</th>
                                         <th class="column-title">Fecha</th>
+                                        <th class="column-title">Estado</th>
                                         <th colspan="2" class="column-title no-link last"><span class="nobr">Acci&oacute;n</span></th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
                                     <tr class="even pointer">
-                                        <td class=" " colspan="8">
+                                        <td class=" " colspan="10">
 			                                <button onclick="window.location.href='{% url 'capacitations:create' %}'" style="float:left;" class="btn btn-primary btn-xs">Crear Capacitacion</button>
 				                        </td>
                                     </tr>
@@ -47,11 +47,19 @@
                                     <tr class="even pointer">
                                         <td class=" ">{{capacitation.contract.contract}}</td>
                                         <td class=" ">{{capacitation.client.name}}</td>
-                                        <td class=" ">{{capacitation.profesional.name}}</td>
                                         <td class=" ">{{capacitation.attendees}}</td>
                                         <td class=" ">{{capacitation.topic}}</td>
                                         <td class=" ">{{capacitation.date}}</td>
+                                        <td class=" ">{{capacitation.state}}</td>
 
+                                        {% if capacitation.state == '' %}
+                                        <td class=" last">
+                                            <div><button id="realizada" capacitation="{{capacitation.id}}" style="float:left;" class="btn btn-success btn-xs">Realizada</button></div>
+                                        </td>
+                                        <td class=" last">
+                                            <div><button id="cancelada" capacitation="{{capacitation.id}}" style="float:left;" class="btn btn-danger btn-xs">Cancelada</button></div>
+                                        </td>
+                                        {% endif %}
                                         <td class=" last">
                                             <div><button onclick="window.location.href='{% url 'capacitations:edit' capacitation.id %}'" style="float:left;" class="btn btn-success btn-xs">Editar</button></div>
                                         </td>
@@ -76,6 +84,48 @@
 {% endblock content %}
 
 {% block javascripts %}
-  {{ block.super}}
+ {{ block.super}}
+    <script>
+    $(function() 
+    {
+
+        $('button#realizada').click(function () {
+            var capacitation = $(this).attr("capacitation");
+
+            $.ajax({
+                type: 'GET',
+                url: '/capacitations/setstate',
+                data : {
+                    'capacitation' : capacitation,
+                    'state': 'realizado'
+                },
+                dataType:'json',
+                success : function(response){
+                    console.log(response);
+                    location.reload();
+                }
+            });
+        });
+        $('button#cancelada').click(function () {
+            var capacitation = $(this).attr("capacitation");
+
+            $.ajax({
+                type: 'GET',
+                url: '/capacitations/setstate',
+                data : {
+                    'capacitation' : capacitation,
+                    'state': 'cancelado'
+                },
+                dataType:'json',
+                success : function(response){
+                    console.log(response);
+                    location.reload();
+                }
+            });
+        });
+
+    });
+
+    </script>
 
 {% endblock javascripts %}

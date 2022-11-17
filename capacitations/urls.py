@@ -12,4 +12,5 @@ urlpatterns = [
     path('update/<int:capacitation_id>/', views.update, name='update'),
     path('delete/<int:capacitation_id>/', views.delete, name='delete'),
     path('delete_capacitations/<int:capacitation_id>/', views.delete_capacitations, name='delete_capacitations'),
+    path('setstate/', views.setstate, name="setstate"),
 ]

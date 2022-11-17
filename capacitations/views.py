@@ -5,37 +5,42 @@ from .models import Capacitation
 from clients.models import Client
 from professionals.models import Professional
 from contracts.models import Contract 
+from django.http import HttpResponse
+import json
 
 # Create your views here.
 def capacitations(request):
-    if not(request.user.is_authenticated):
-        return redirect("index")
 
-    capacitations = Capacitation.objects.all()
+
+    professional = Professional.objects.get(username=request.user.username)
+    try:
+        capacitations = Capacitation.objects.filter(professional=professional.id).order_by('id')
+    except:
+        capacitations = None
+
     return render(request, "capacitations/capacitations.html", {'capacitations':capacitations})
 
 def create(request):
     if not(request.user.is_authenticated):
         return redirect("index")
+
     clients = Client.objects.all()
-    professionals = Professional.objects.all()
     contracts = Contract.objects.all()
-    return render(request, 'capacitations/create.html', {'clients':clients, 'professionals':professionals, 'contracts':contracts})
+    return render(request, 'capacitations/create.html', {'clients':clients, 'contracts':contracts})
 
 def insert(request):
     if not(request.user.is_authenticated):
         return redirect("index")
 
     attendees = request.POST.get('attendees')
-    professional = request.POST.get('professional')
     topic = request.POST.get('topic')
     date = request.POST.get('date')
     client = request.POST.get('client')
     contract = request.POST.get('contract')
+    professional = Professional.objects.get(username=request.user.username)
     selected_client = Client.objects.get(name=client)
-    selected_professional = Professional.objects.get(name=professional)
     selected_contract = Contract.objects.get(contract=contract)
-    capacitation = Capacitation(attendees=attendees, professional= selected_professional, topic=topic, date=date, client=selected_client, contract=selected_contract)
+    capacitation = Capacitation(attendees=attendees, professional=professional, topic=topic, date=date, client=selected_client, contract=selected_contract)
     capacitation.save()
 
     return HttpResponseRedirect('/capacitations/')
@@ -44,10 +49,9 @@ def edit(request, capacitation_id):
     if not(request.user.is_authenticated):
         return redirect("index")
     clients = Client.objects.all()
-    professionals = Professional.objects.all()
     contracts = Contract.objects.all()
     capacitation = get_object_or_404(Capacitation, pk=capacitation_id)
-    return render(request, 'capacitations/edit.html', {'capacitation': capacitation, 'clients': clients, 'professionals': professionals, 'contracts':contracts})
+    return render(request, 'capacitations/edit.html', {'capacitation': capacitation, 'clients': clients,  'contracts':contracts})
 
 def update(request, capacitation_id):
     if not(request.user.is_authenticated):
@@ -55,7 +59,6 @@ def update(request, capacitation_id):
 
     capacitation = get_object_or_404(Capacitation, pk=capacitation_id)
     client = Client.objects.get(name=request.POST.get('client'))
-    professional = Professional.objects.get(name=request.POST.get('professional'))
     contract = Contract.objects.get(contract=request.POST.get('contract'))
 
     capacitation.attendees = request.POST.get('attendees')
@@ -63,7 +66,6 @@ def update(request, capacitation_id):
     capacitation.address = request.POST.get('address')
     capacitation.date = request.POST.get('date')
     capacitation.client = client
-    capacitation.professional = professional
     capacitation.contract = contract
     capacitation.save()
     return HttpResponseRedirect('/capacitations/')
@@ -86,3 +88,16 @@ def delete_capacitations(request, capacitation_id):
         return HttpResponseRedirect('/capacitations/')
     
     return render(request, 'capacitations/delete_capacitations.html', {'capacitation': capacitation})
+
+def setstate(request):
+
+    capacitation = request.GET.get('capacitation')
+    state = request.GET.get('state')
+
+    capacitation = get_object_or_404(Capacitation, pk=capacitation)
+    capacitation.state = state
+
+    capacitation.save()
+
+    response = {'resultado': 'ok'}
+    return HttpResponse(json.dumps(response), content_type='application/json')

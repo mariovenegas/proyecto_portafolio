@@ -14,6 +14,7 @@ class Capacitation(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, null=True)
     professional = models.ForeignKey(Professional, on_delete=models.CASCADE, null=True)
     topic = models.CharField(max_length=500, verbose_name="Tema de capacitacion")
+    state = models.CharField(max_length=10, verbose_name="Estado de la asesoría", null=True)
     date = models.DateField(null=True, verbose_name="Fecha de capacitacion")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de actualización", null=True)
