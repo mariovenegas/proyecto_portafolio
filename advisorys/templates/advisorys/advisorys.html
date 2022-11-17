@@ -31,14 +31,14 @@
                                         <th class="column-title">Cliente</th>
                                         <th class="column-title">Tema de la asesoria</th>
                                         <th class="column-title">Fecha de la asesoria</th>
-                                        <th class="column-title">Profesional responsable</th>
-                                        <th colspan="2" class="column-title no-link last"><span class="nobr">Acci&oacute;n</span></th>
+                                        <th class="column-title">Estado</th>
+                                        <th colspan="4" class="column-title no-link last"><span class="nobr">Acci&oacute;n</span></th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
                                     <tr class="even pointer">
-                                        <td class=" " colspan="8">
+                                        <td class=" " colspan="10">
 			                                <button onclick="window.location.href='{% url 'advisorys:create' %}'" style="float:left;" class="btn btn-primary btn-xs">Ingresar Asesoria</button>
 				                        </td>
                                     </tr>
@@ -50,8 +50,16 @@
                                         <td class=" ">{{advisory.client.name}}</td>
                                         <td class=" ">{{advisory.topic}}</td>
                                         <td class=" ">{{advisory.date}}</td>
-                                        <td class=" ">{{advisory.professional.name}}</td>
+                                        <td class=" ">{{advisory.state}}</td>
 
+                                        {% if advisory.state == '' %}
+                                        <td class=" last">
+                                            <div><button id="realizada" advisory="{{advisory.id}}" style="float:left;" class="btn btn-success btn-xs">Realizada</button></div>
+                                        </td>
+                                        <td class=" last">
+                                            <div><button id="cancelada" advisory="{{advisory.id}}" style="float:left;" class="btn btn-danger btn-xs">Cancelada</button></div>
+                                        </td>
+                                        {% endif %}
                                         <td class=" last">
                                             <div><button onclick="window.location.href='{% url 'advisorys:edit' advisory.id %}'" style="float:left;" class="btn btn-success btn-xs">Editar</button></div>
                                         </td>
@@ -77,5 +85,46 @@
 
 {% block javascripts %}
   {{ block.super}}
+    <script>
+    $(function() 
+    {
 
+        $('button#realizada').click(function () {
+            var advisory = $(this).attr("advisory");
+
+            $.ajax({
+                type: 'GET',
+                url: '/advisorys/setstate',
+                data : {
+                    'advisory' : advisory,
+                    'state': 'realizado'
+                },
+                dataType:'json',
+                success : function(response){
+                    console.log(response);
+                    location.reload();
+                }
+            });
+        });
+        $('button#cancelada').click(function () {
+            var advisory = $(this).attr("advisory");
+
+            $.ajax({
+                type: 'GET',
+                url: '/advisorys/setstate',
+                data : {
+                    'advisory' : advisory,
+                    'state': 'cancelado'
+                },
+                dataType:'json',
+                success : function(response){
+                    console.log(response);
+                    location.reload();
+                }
+            });
+        });
+
+    });
+
+    </script>
 {% endblock javascripts %}

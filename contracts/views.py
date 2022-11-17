@@ -2,10 +2,13 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Contract
 from clients.models import Client
 from services.models import Service
+import json
+
 # Create your views here.
 def contracts(request):
     if not(request.user.is_authenticated):
@@ -85,3 +88,19 @@ def delete_contracts(request, contract_id):
         return HttpResponseRedirect('/contracts/')
     
     return render(request, 'contracts/delete_contracts.html', {'contract': contract})
+
+def getcontracts(request):
+
+    client_name = request.GET.get('client_name')
+    print ("ajax client_name "+ str(client_name))
+
+    selected_client = Client.objects.filter(name=client_name) # retorna un query set
+
+    #print (" region id "+ str(selected_region.region))
+
+
+    contracts = list(Contract.objects.filter(client__in=selected_client).values('contract'))
+    #print "selected selected_region ", selected_region
+    #all_communes = selected_region.commune_set.all()
+    response = {'contracts': contracts}
+    return HttpResponse(json.dumps(response), content_type='application/json')
