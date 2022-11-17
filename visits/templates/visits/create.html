@@ -24,16 +24,6 @@
                         {% csrf_token %}
 
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="numero de contrato">Numero del contrato</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select id="contract" name="contract" class="form-control">
-                                {% for contract in contracts %}
-                                    <option value="{{contract.contract}}">{{contract.contract}}</option>
-                                {% endfor %}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="clientes">Clientes</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select id="client" name="client" class="form-control">
@@ -44,12 +34,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="profesionales">Profesional</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="numero de contrato">Numero del contrato</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select id="professional" name="professional" class="form-control">
-                                {% for professional in professionals %}
-                                    <option value="{{professional.name}}">{{professional.name}}</option>
-                                {% endfor %}
+                                <select id="contract" name="contract" class="form-control">
                                 </select>
                             </div>
                         </div>
@@ -119,6 +106,28 @@
             		"Diciembre"
         		]
     		}
+        });
+
+        $('select#client').change(function () {
+            var optionSelected = $(this).find("option:selected");
+            var valueSelected  = optionSelected.val();
+            var client_name   = optionSelected.text();
+
+            $.ajax({
+                type: 'GET',
+                url: '/contracts/getcontracts',
+                data : {
+                    'client_name' : client_name
+                },
+                dataType:'json',
+                success : function(response){
+                    console.log(response);
+                    $("#contract option").remove();
+                    for (var i = 0; i< response.contracts.length ; i++) {
+                        $("#contract").append('<option>'+ response.contracts[i]['contract'] +'</option>');
+                    };
+                }
+            });
         });
     });
     </script>

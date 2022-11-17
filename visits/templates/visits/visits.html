@@ -31,6 +31,7 @@
                                         <th class="column-title">Profesional</th>
                                         <th class="column-title">Motivo de visita</th>
                                         <th class="column-title">Fecha de visita</th>
+                                        <th class="column-title">Estado</th>
                                         <th colspan="2" class="column-title no-link last"><span class="nobr">Acci&oacute;n</span></th>
                                 </tr>
                                 </thead>
@@ -49,7 +50,16 @@
                                         <td class=" ">{{visit.profesional.name}}</td>
                                         <td class=" ">{{visit.reason}}</td>
                                         <td class=" ">{{visit.date}}</td>
+                                        <td class=" ">{{visit.state}}</td>
 
+                                        {% if visit.state == '' %}
+                                        <td class=" last">
+                                            <div><button id="realizada" visit="{{visit.id}}" style="float:left;" class="btn btn-success btn-xs">Realizada</button></div>
+                                        </td>
+                                        <td class=" last">
+                                            <div><button id="cancelada" visit="{{visit.id}}" style="float:left;" class="btn btn-danger btn-xs">Cancelada</button></div>
+                                        </td>
+                                        {% endif %}
                                         <td class=" last">
                                             <div><button onclick="window.location.href='{% url 'visits:edit' visit.id %}'" style="float:left;" class="btn btn-success btn-xs">Editar</button></div>
                                         </td>
@@ -75,5 +85,47 @@
 
 {% block javascripts %}
   {{ block.super}}
+  <script>
+    $(function() 
+    {
+
+        $('button#realizada').click(function () {
+            var visit = $(this).attr("visit");
+
+            $.ajax({
+                type: 'GET',
+                url: '/visits/setstate',
+                data : {
+                    'visit' : visit,
+                    'state': 'realizado'
+                },
+                dataType:'json',
+                success : function(response){
+                    console.log(response);
+                    location.reload();
+                }
+            });
+        });
+        $('button#cancelada').click(function () {
+            var visit = $(this).attr("visit");
+
+            $.ajax({
+                type: 'GET',
+                url: '/visits/setstate',
+                data : {
+                    'visit' : visit,
+                    'state': 'cancelado'
+                },
+                dataType:'json',
+                success : function(response){
+                    console.log(response);
+                    location.reload();
+                }
+            });
+        });
+
+    });
+
+    </script>
 
 {% endblock javascripts %}

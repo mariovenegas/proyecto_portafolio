@@ -12,5 +12,6 @@ urlpatterns = [
     path('update/<int:visit_id>/', views.update, name='update'),
     path('delete/<int:visit_id>/', views.delete, name='delete'),
     path('delete_visits/<int:visit_id>/', views.delete_visits, name='delete_visits'),
+    path('setstate/', views.setstate, name="setstate"),
 
 ]

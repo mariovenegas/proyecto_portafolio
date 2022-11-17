@@ -13,6 +13,7 @@ class Visit(models.Model):
     professional = models.ForeignKey(Professional, on_delete=models.CASCADE, null=True)
     reason = models.CharField(max_length=500, verbose_name="Razon de la visita")
     date = models.DateField(null=True, verbose_name="Fecha de visita")
+    state = models.CharField(max_length=10, verbose_name="Estado de la asesoría", null=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de actualización", null=True)
 

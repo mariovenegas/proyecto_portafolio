@@ -7,13 +7,20 @@ from .models import Visit
 from clients.models import Client
 from professionals.models import Professional
 from contracts.models import Contract 
+from django.http import HttpResponse
+import json
+
 
 # Create your views here.
 def visits(request):
-    if not(request.user.is_authenticated):
-        return redirect("index")
 
-    visits = Visit.objects.all()
+
+    professional = Professional.objects.get(username=request.user.username)
+    try:
+        visits = Visit.objects.filter(professional=professional.id).order_by('id')
+    except:
+        visits = None
+
     return render(request, "visits/visits.html", {'visits':visits})
 
 def create(request):
@@ -21,9 +28,8 @@ def create(request):
         return redirect("index")
 
     clients = Client.objects.all()
-    professionals = Professional.objects.all()
     contracts = Contract.objects.all()
-    return render(request, 'visits/create.html', {'clients':clients, 'professionals':professionals, 'contracts':contracts})
+    return render(request, 'visits/create.html', {'clients':clients, 'contracts':contracts})
 
 def insert(request):
     if not(request.user.is_authenticated):
@@ -33,11 +39,10 @@ def insert(request):
     reason = request.POST.get('reason')
     client = request.POST.get('client')
     date = request.POST.get('date')
-    professional = request.POST.get('professional')
     selected_client = Client.objects.get(name=client)
-    selected_professional = Professional.objects.get(name=professional)
+    professional = Professional.objects.get(username=request.user.username)
     selected_contract = Contract.objects.get(contract=contract)
-    visit = Visit( client=selected_client, reason=reason,  date=date, professional=selected_professional, contract=selected_contract  )
+    visit = Visit( client=selected_client, reason=reason,  date=date, professional=professional, contract=selected_contract  )
     visit.save()
 
     return HttpResponseRedirect('/visits/')
@@ -47,10 +52,9 @@ def edit(request, visit_id):
         return redirect("index")
 
     clients = Client.objects.all()
-    professionals = Professional.objects.all()
     contracts = Contract.objects.all()
     visit = get_object_or_404(Visit, pk=visit_id)
-    return render(request, 'visits/edit.html', {'visit': visit, 'clients': clients, 'professionals': professionals, 'contracts':contracts})
+    return render(request, 'visits/edit.html', {'visit': visit, 'clients': clients, 'contracts':contracts})
 
 def update(request, visit_id):
     if not(request.user.is_authenticated):
@@ -58,13 +62,11 @@ def update(request, visit_id):
 
     visit = get_object_or_404(Visit, pk=visit_id)
     client = Client.objects.get(name=request.POST.get('client'))
-    professional = Professional.objects.get(name=request.POST.get('professional'))
     contract = Contract.objects.get(contract=request.POST.get('contract'))
 
     visit.client = client
     visit.reason = request.POST.get('reason')
     visit.date = request.POST.get('date')
-    visit.professional = professional
     visit.contract = contract
 
     visit.save()
@@ -89,3 +91,16 @@ def delete_visits(request, visit_id):
         return HttpResponseRedirect('/visits/')
     
     return render(request, 'visits/delete_visits.html', {'visit': visit})
+
+def setstate(request):
+
+    visit = request.GET.get('visit')
+    state = request.GET.get('state')
+
+    visit = get_object_or_404(Visit, pk=visit)
+    visit.state = state
+
+    visit.save()
+
+    response = {'resultado': 'ok'}
+    return HttpResponse(json.dumps(response), content_type='application/json')
