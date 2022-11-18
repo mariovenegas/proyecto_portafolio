@@ -101,3 +101,12 @@ def setstate(request):
 
     response = {'resultado': 'ok'}
     return HttpResponse(json.dumps(response), content_type='application/json')
+
+def capacitation_review(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+        
+    capacitations = Capacitation.objects.all()
+
+
+    return render(request, "capacitations/capacitation_review.html", {'capacitations':capacitations})

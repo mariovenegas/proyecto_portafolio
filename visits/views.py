@@ -104,3 +104,12 @@ def setstate(request):
 
     response = {'resultado': 'ok'}
     return HttpResponse(json.dumps(response), content_type='application/json')
+
+def visit_review(request):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+        
+    visits = Visit.objects.all()
+
+
+    return render(request, "visits/visit_review.html", {'visits':visits})

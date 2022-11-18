@@ -33,10 +33,9 @@
           <li class><a href=""><i class="fa fa-calculator"></i> Calcular accidentabilidad </a></li>
           <li class><a><i class="fa fa-search"></i> Visualizar actividades <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu" style="display: none;">
-              <li><a href="">Asesorías</a></li>
-              <li><a href="">Capacitaciones</a></li>
-              <li><a href="">Mejoras</a></li>
-              <li><a href="">Visitas</a></li>
+              <li><a href="{% url 'advisorys:review_advisory' %}">Asesorías</a></li>
+              <li><a href="{% url 'capacitations:capacitation_review' %}">Capacitaciones</a></li>
+              <li><a href="{% url 'visits:visit_review' %}">Visitas</a></li>
             </ul>
           </li>
           <li class><a href=""><i class="fa fa-newspaper-o"></i> Generar reporte cliente </a></li>
