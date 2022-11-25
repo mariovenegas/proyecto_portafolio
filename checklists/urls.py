@@ -12,5 +12,7 @@ urlpatterns = [
     path('update/<int:checklist_id>/', views.update, name='update'),
     path('delete/<int:checklist_id>/', views.delete, name='delete'),
     path('delete_checklists/<int:checklist_id>/', views.delete_checklists, name='delete_checklists'),
+    path('review/<int:checklist_id>/', views.review, name='review'),
+    path('update_review/<int:checklist_id>/', views.update_review, name='update_review'),
 
 ]

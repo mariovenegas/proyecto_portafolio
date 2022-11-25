@@ -36,9 +36,6 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="contract">Contrato</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select id="contract" name="contract" class="form-control">
-                                {% for contract in contracts %}
-                                    <option value="{{contract.contract}}">{{contract.contract}}</option>
-                                {% endfor %}
                                 </select>
                             </div>
                         </div>
@@ -153,7 +150,27 @@
                 });
             });
 
+            $('select#client').change(function () {
+                var optionSelected = $(this).find("option:selected");
+                var valueSelected  = optionSelected.val();
+                var client_name   = optionSelected.text();
 
+                $.ajax({
+                    type: 'GET',
+                    url: '/contracts/getcontracts',
+                    data : {
+                        'client_name' : client_name
+                    },
+                    dataType:'json',
+                    success : function(response){
+                        console.log(response);
+                        $("#contract option").remove();
+                        for (var i = 0; i< response.contracts.length ; i++) {
+                            $("#contract").append('<option>'+ response.contracts[i]['contract'] +'</option>');
+                        };
+                    }
+                });
+            });
 
         });
     </script>

@@ -30,7 +30,7 @@
                                         <th class="column-title">Numero de contrato</th>
                                         <th class="column-title">Descripcion del checklist</th>
 
-                                        <th colspan="2" class="column-title no-link last"><span class="nobr">Acci&oacute;n</span></th>
+                                        <th colspan="3" class="column-title no-link last"><span class="nobr">Acci&oacute;n</span></th>
                                 </tr>
                                 </thead>
 
@@ -49,6 +49,9 @@
 
                                         <td class=" last">
                                             <div><button onclick="window.location.href='{% url 'checklists:edit' checklist.id %}'" style="float:left;" class="btn btn-success btn-xs">Editar</button></div>
+                                        </td>
+                                        <td class=" last">
+                                            <div><button onclick="window.location.href='{% url 'checklists:review' checklist.id %}'" style="float:left;" class="btn btn-success btn-xs">Revisar</button></div>
                                         </td>
                                         <td class=" last">
                                             <div><button onclick="window.location.href='{% url 'checklists:delete_checklists' checklist.id %}'" style="float:left;" class="btn btn-danger btn-xs">Eliminar</button></div>

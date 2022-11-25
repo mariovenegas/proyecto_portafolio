@@ -51,9 +51,11 @@ def edit(request, checklist_id):
         return redirect("index")
 
     clients = Client.objects.all()
-    contracts = Contract.objects.all()
+    #contracts = Contract.objects.all()
     checklist = get_object_or_404(Checklist, pk=checklist_id)
     checklistdetails = Checklistdetail.objects.filter(checklist=checklist).order_by('id')
+    contracts = Contract.objects.filter(client=checklist.client).order_by('id')
+
     return render(request, 'checklists/edit.html', {'checklist': checklist, 'clients': clients, 'contracts': contracts, 'checklistdetails':checklistdetails})
 
 
@@ -102,3 +104,30 @@ def delete_checklists(request, checklist_id):
         return HttpResponseRedirect('/checklists/')
     
     return render(request, 'checklists/delete_checklists.html', {'checklist': checklist})
+
+def review(request, checklist_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
+    clients = Client.objects.all()
+    #contracts = Contract.objects.all()
+    checklist = get_object_or_404(Checklist, pk=checklist_id)
+    checklistdetails = Checklistdetail.objects.filter(checklist=checklist).order_by('id')
+    contracts = Contract.objects.filter(client=checklist.client).order_by('id')
+
+    return render(request, 'checklists/review.html', {'checklist': checklist, 'clients': clients, 'contracts': contracts, 'checklistdetails':checklistdetails})
+
+
+def update_review(request, checklist_id):
+    if not(request.user.is_authenticated):
+        return redirect("index")
+
+    respuestas = request.POST.getlist('answers[]')
+    index = request.POST.getlist('index[]')
+
+    for i, resp in zip(index, respuestas):
+        checklistdetail = get_object_or_404(Checklistdetail, pk=i)
+        checklistdetail.result=resp
+        checklistdetail.save()
+
+    return HttpResponseRedirect('/checklists/')

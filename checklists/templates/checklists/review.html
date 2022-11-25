@@ -1,0 +1,102 @@
+{% extends "core/base_site.html" %}
+
+{% block title %} Revisar Checklist {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <div class="">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h3>Revisar Checklist</h3>
+                        <div class="clearfix"></div>
+                    </div>                  
+
+                    <div class="x_content">
+
+                        <form action="{% url 'checklists:update_review' checklist.id %}" method="POST" class="form-horizontal form-label-left">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="client">Cliente</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" name="client" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{checklist.client.name}}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="contract">Contrato</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" name="contract" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{checklist.contract.contract}}" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Descripcion del checklist</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" name="description" autocomplete="off" class="form-control col-md-7 col-xs-12" value="{{checklist.description}}" readonly>
+                            </div>
+                        </div>
+
+                        <div class="ln_solid"></div>
+
+                        <div class="field_wrapper">
+                            <div class="row">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Preguntas</label>
+                            </div>
+
+
+                            {% for checklistdetail in checklistdetails %}
+                            <div class="form-group" id="preg{{forloop.counter}}">
+                                <div class="row">
+                                    <label class="control-label col-sm-1 col-sm-offset-3"></label>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <h2>{{forloop.counter}}.- {{checklistdetail.description}}</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="control-label col-sm-1 col-sm-offset-3"></label>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <input type="text" name="answers[]" required class="form-control col-md-7 col-xs-12" value="{{checklistdetail.result}}">
+                                        <input type="hidden" name="index[]" value="{{checklistdetail.id}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% endfor %}
+
+
+
+                        </div>
+
+                        <div class="ln_solid"></div>
+ 
+
+
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" name="submit" class="btn btn-success">Aceptar</button>
+                                <button type="button"  onclick="window.location.href='{% url 'checklists:checklists' %}'" class="btn btn-primary">Cancelar</button>
+                            </div>
+                        </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+
+{% endblock javascripts %}

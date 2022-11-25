@@ -163,7 +163,28 @@
             });
 
 
+            $('select#client').change(function () {
+                var optionSelected = $(this).find("option:selected");
+                var valueSelected  = optionSelected.val();
+                var client_name   = optionSelected.text();
 
+                $.ajax({
+                    type: 'GET',
+                    url: '/contracts/getcontracts',
+                    data : {
+                        'client_name' : client_name
+                    },
+                    dataType:'json',
+                    success : function(response){
+                        console.log(response);
+                        $("#contract option").remove();
+                        for (var i = 0; i< response.contracts.length ; i++) {
+                            $("#contract").append('<option>'+ response.contracts[i]['contract'] +'</option>');
+                        };
+                    }
+                });
+            });
+            
         });
     </script>
 
