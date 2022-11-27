@@ -1,6 +1,6 @@
 {% extends "core/base_site.html" %}
 
-{% block title %} Borrar Asesoria {% endblock title %}
+{% block title %} Borrar Solicitud de asesoria especial {% endblock title %}
 
 {% block stylesheets %}
   {{ block.super }}
@@ -14,7 +14,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h3>Borrar Asesoria</h3>
+                        <h3>Borrar Solicitud</h3>
                         <div class="clearfix"></div>
                     </div>                  
 
@@ -22,12 +22,12 @@
 
                         <form action="" method="POST" class="form-horizontal form-label-left">
                             {% csrf_token %}
-                            <h4>Esta seguro de borrar asesoria?</h4>
+                            <h4>Esta seguro de borrar solicitud?</h4>
                             <br>
-                            <h4>{{advisory.topic}}</h4>
+                            <h4>{{specialadvisory.motive}}</h4>
                             <br>
                             <button type="submit" name="submit" class="btn btn-danger">Aceptar</button>
-                            <button type="button"  onclick="window.location.href='{% url 'advisorys:advisorys' %}'" class="btn btn-primary">Cancelar</button>
+                            <button type="button"  onclick="window.location.href='{% url 'specialadvisorys:specialadvisorys' %}'" class="btn btn-primary">Cancelar</button>
                         </form>
                     </div>
 

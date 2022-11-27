@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'contracts.apps.ContractsConfig',
     'visits.apps.VisitsConfig',
     'checklists.apps.ChecklistsConfig',
+    'specialadvisorys.apps.SpecialadvisorysConfig',
 ]
 
 MIDDLEWARE = [
@@ -95,7 +96,7 @@ DATABASES = {
 		'NAME': 'ORCL',
 		'USER': 'portafolio',
 		'PASSWORD': 'titulo',
-		'HOST': 'localhost',
+		'HOST': '192.168.1.113',
 		'PORT': '1521',
     }
 }
