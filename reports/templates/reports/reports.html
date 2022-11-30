@@ -1,0 +1,141 @@
+{% extends "core/base_site.html" %}
+
+{% block title %}  Reporte {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <div class="">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h3> Reporte </h3>
+                        <div class="clearfix"></div>
+                    </div>                  
+
+                    <div class="x_content">
+                        <form action="{% url 'reports:reports' %}" method="POST" class="form-horizontal form-label-left">
+                        {% csrf_token %}
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3" for="clientes">Clientes</label>
+                                <div class="col-md-4 col-sm-4">
+                                    <select id="client" name="client" class="form-control">
+                                    {% for client in clients %}
+                                        <option value="{{client.name}}" {% if client.name == selected_client %}selected{% endif %}>{{client.name}}</option>
+                                    {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <button type="submit" name="buscar" class="btn btn-success">Buscar</button>
+                                    <button type="submit" name="pdf" class="btn btn-success">PDF</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="table-responsive">
+
+                            <h2>Visitas</h2>
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                <tr class="headings">
+                                        <th class="column-title">Fecha</th>
+                                        <th class="column-title">Profesional</th>
+                                        <th class="column-title">Motivo de visita</th>
+                                        <th class="column-title">Estado</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    {% for visit in visits %}
+                                    <tr class="even pointer">
+                                        <td class=" ">{{visit.date}}</td>
+                                        <td class=" ">{{visit.professional.name}}</td>
+                                        <td class=" ">{{visit.reason}}</td>
+                                        <td class=" ">{{visit.state}}</td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="table-responsive">
+
+                            <h2>Asesorias</h2>
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                <tr class="headings">
+                                        <th class="column-title">Fecha</th>
+                                        <th class="column-title">Profesional</th>
+                                        <th class="column-title">Tema</th>
+                                        <th class="column-title">Estado</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    {% for advisory in advisorys %}
+                                    <tr class="even pointer">
+                                        
+                                        <td class=" ">{{advisory.date}}</td>
+                                        <td class=" ">{{advisory.professional.name}}</td>
+                                        <td class=" ">{{advisory.topic}}</td>
+                                        <td class=" ">{{advisory.state}}</td>
+                                        
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <div class="table-responsive">
+
+                            <h2>Capacitaciones</h2>
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                <tr class="headings">
+                                        <th class="column-title">Fecha</th>
+                                        <th class="column-title">Profesional</th>
+                                        <th class="column-title">Tema</th>
+                                        <th class="column-title">Estado</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    {% for capacitation in capacitations %}
+                                    <tr class="even pointer">
+                                        <td class=" ">{{capacitation.date}}</td>
+                                        <td class=" ">{{capacitation.professional.name}}</td>
+                                        <td class=" ">{{capacitation.topic}}</td>
+                                        <td class=" ">{{capacitation.state}}</td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+
+{% endblock javascripts %}

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+
+      <title>  Reporte </title>
+
+      
+  
+        <!-- Bootstrap -->
+        
+        <link href="/static/core/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="/static/core/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!-- bootstrap-daterangepicker -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+      
+
+      <!-- Custom Theme Style -->
+      <link href="/static/core/css/custom.css" rel="stylesheet">
+    
+  </head>
+
+  <body class="nav-md ">
+
+    
+      <div class="container body">
+        <div class="main_container">
+
+          
+            <div class="col-md-3 left_col  ">
+              <div class="left_col scroll-view">
+    <div class="navbar nav_title" style="border: 0;">
+      <a href="/index2/" class="site_title"><i class="fa fa-spinner"></i> <span>SegurLife</span></a>
+    </div>
+  
+    <div class="clearfix"></div>
+  
+    <!-- menu profile quick info -->
+    <div class="profile clearfix">
+      <div class="profile_pic">
+      </div>
+      <div class="profile_info">
+        <span>Bienvenido,</span>
+        <h2></h2>
+      </div>
+    </div>
+    <!-- /menu profile quick info -->
+  
+    <br />
+  
+    <!-- sidebar menu ADMINISTRADOR-->
+    
+     
+
+
+    <!-- /sidebar menu -->
+
+
+  </div>
+            </div>
+          
+
+          
+            <div class="top_nav">
+              <div class="nav_menu">
+    <nav>
+      <div class="nav toggle">
+        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+      </div>
+  
+      <ul class="nav navbar-nav navbar-right">
+        <li class="">
+          <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            
+            <span class=" fa fa-angle-down"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-usermenu pull-right">
+            <li><a href="/accounts/logout/"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+          </ul>
+        </li>
+        <!-- PARA NOTIFICACIONES
+        <li role="presentation" class="dropdown">
+          <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-envelope-o"></i>
+            <span class="badge bg-green">6</span>
+          </a>
+          <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+            <li>
+              <a>
+                <span class="image"><img src="/static/images/img.jpg" alt="Profile Image" /></span>
+                <span>
+                  <span>John Doe</span>
+                  <span class="time">3 mins ago</span>
+                </span>
+                <span class="message">
+                  Film festivals used to be do-or-die moments for movie makers. They were where...
+                </span>
+              </a>
+            </li>
+            <li>
+              <a>
+                <span class="image"><img src="/static/images/img.jpg" alt="Profile Image" /></span>
+                <span>
+                  <span>John Doe</span>
+                  <span class="time">3 mins ago</span>
+                </span>
+                <span class="message">
+                  Film festivals used to be do-or-die moments for movie makers. They were where...
+                </span>
+              </a>
+            </li>
+            <li>
+              <a>
+                <span class="image"><img src="/static/images/img.jpg" alt="Profile Image" /></span>
+                <span>
+                  <span>John Doe</span>
+                  <span class="time">3 mins ago</span>
+                </span>
+                <span class="message">
+                  Film festivals used to be do-or-die moments for movie makers. They were where...
+                </span>
+              </a>
+            </li>
+            <li>
+              <a>
+                <span class="image"><img src="/static/images/img.jpg" alt="Profile Image" /></span>
+                <span>
+                  <span>John Doe</span>
+                  <span class="time">3 mins ago</span>
+                </span>
+                <span class="message">
+                  Film festivals used to be do-or-die moments for movie makers. They were where...
+                </span>
+              </a>
+            </li>
+            <li>
+              <div class="text-center">
+                <a>
+                  <strong>See All Alerts</strong>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </li>
+        -->
+      </ul>
+    </nav>
+  </div>
+            </div>
+          
+
+          
+<div class="right_col" role="main">
+    <div class="">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h3> Reporte </h3>
+                        <div class="clearfix"></div>
+                    </div>                  
+
+                    <div class="x_content">
+                        <form action="/reports/" method="POST" class="form-horizontal form-label-left">
+                        
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3" for="clientes">Clientes</label>
+                                <div class="col-md-4 col-sm-4">
+                                    <select id="client" name="client" class="form-control">
+                                    
+                                        <option value="Cliente 1" selected>Cliente 1</option>
+                                    
+                                        <option value="Cliente 2" >Cliente 2</option>
+                                    
+                                    </select>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <button type="submit" name="submit" class="btn btn-success">Buscar</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="table-responsive">
+
+                            <h2>Visitas</h2>
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                <tr class="headings">
+                                        <th class="column-title">Fecha</th>
+                                        <th class="column-title">Profesional</th>
+                                        <th class="column-title">Motivo de visita</th>
+                                        <th class="column-title">Estado</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    
+                                    <tr class="even pointer">
+                                        <td class=" ">29 de noviembre de 2022</td>
+                                        <td class=" "></td>
+                                        <td class=" ">sadfasdf</td>
+                                        <td class=" "></td>
+                                    </tr>
+                                    
+                                    <tr class="even pointer">
+                                        <td class=" ">29 de noviembre de 2022</td>
+                                        <td class=" "></td>
+                                        <td class=" ">asdfasdddddd</td>
+                                        <td class=" "></td>
+                                    </tr>
+                                    
+                                    <tr class="even pointer">
+                                        <td class=" ">30 de noviembre de 2022</td>
+                                        <td class=" "></td>
+                                        <td class=" ">ddd</td>
+                                        <td class=" "></td>
+                                    </tr>
+                                    
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="table-responsive">
+
+                            <h2>Asesorias</h2>
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                <tr class="headings">
+                                        <th class="column-title">Fecha</th>
+                                        <th class="column-title">Profesional</th>
+                                        <th class="column-title">Tema</th>
+                                        <th class="column-title">Estado</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    
+                                    <tr class="even pointer">
+                                        
+                                        <td class=" ">1 de diciembre de 2022</td>
+                                        <td class=" "></td>
+                                        <td class=" ">dfasdf</td>
+                                        <td class=" "></td>
+                                        
+                                    </tr>
+                                    
+                                    <tr class="even pointer">
+                                        
+                                        <td class=" ">2 de diciembre de 2022</td>
+                                        <td class=" "></td>
+                                        <td class=" ">dfadf sdfsdf sd</td>
+                                        <td class=" "></td>
+                                        
+                                    </tr>
+                                    
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <div class="table-responsive">
+
+                            <h2>Capacitaciones</h2>
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                <tr class="headings">
+                                        <th class="column-title">Numero de contrato</th>
+                                        <th class="column-title">Cliente</th>
+                                        <th class="column-title">Profesional</th>
+                                        <th class="column-title">Motivo de visita</th>
+                                        <th class="column-title">Fecha de visita</th>
+                                        <th class="column-title">Estado</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    
+                                    <tr class="even pointer">
+                                        <td class=" "></td>
+                                        <td class=" "></td>
+                                        <td class=" "></td>
+                                        <td class=" "></td>
+                                        <td class=" "></td>
+                                        <td class=" "></td>
+                                    </tr>
+                                    
+                                    <tr class="even pointer">
+                                        <td class=" "></td>
+                                        <td class=" "></td>
+                                        <td class=" "></td>
+                                        <td class=" "></td>
+                                        <td class=" "></td>
+                                        <td class=" "></td>
+                                    </tr>
+                                    
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+          
+            <footer>
+              <div class="pull-right">
+    ©2022 Todos los derechos reservados
+</div>
+<div class="clearfix"></div>
+            </footer>
+          
+        </div>
+      </div>
+
+      
+  
+
+        <!-- jQuery -->
+        <script src="/static/core/vendor/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="/static/core/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- bootstrap-daterangepicker -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+
+      
+
+
+      <!-- Custom Theme Scripts -->
+
+      <script src="/static/core/js/custom.js"></script>
+    
+  </body>
+</html>

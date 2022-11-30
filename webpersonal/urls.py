@@ -35,6 +35,7 @@ urlpatterns = [
     path('visits/',include('visits.urls')),
     path('checklists/',include('checklists.urls')),
     path('specialadvisorys/',include('specialadvisorys.urls')),
+    path('reports/',include('reports.urls')),
     
     #Paths de Auth
     path('accounts/',include('django.contrib.auth.urls')),

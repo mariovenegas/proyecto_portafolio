@@ -10,6 +10,10 @@ pillow = "*"
 pylint = "*"
 pylint-django = "*"
 cx-oracle = "*"
+reportlab = "*"
+install = "*"
+typing-extensions = "*"
+xhtml2pdf = "*"
 
 [dev-packages]
 
