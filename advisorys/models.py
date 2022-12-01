@@ -19,6 +19,7 @@ class Advisory(models.Model):
     state = models.CharField(max_length=10, verbose_name="Estado de la asesoría", null=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de actualización", null=True)
+    
 
     class Meta:
         verbose_name = "capacitacion"

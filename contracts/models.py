@@ -13,6 +13,7 @@ class Contract(models.Model):
     dateend = models.DateField(verbose_name="Fecha de finalizacion")
     service = models.ForeignKey(Service, on_delete=models.CASCADE, null=True)
     client = models.ForeignKey(Client, on_delete=models.CASCADE, null=True)
+    mensualprice = models.PositiveIntegerField(verbose_name="Monto mensual", null=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de actualización", null=True)
 

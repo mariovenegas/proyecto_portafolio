@@ -32,6 +32,7 @@
                                         <th class="column-title">Fecha de inicio del contrato</th>
                                         <th class="column-title">Fecha de final del contrato</th>
                                         <th class="column-title">Servicio</th>
+                                        <th class="column-title">Precio mensual</th>
                                         <th colspan="2" class="column-title no-link last"><span class="nobr">Acci&oacute;n</span></th>
                                 </tr>
                                 </thead>
@@ -51,6 +52,7 @@
                                         <td class=" ">{{contract.datestart|date:'Y-m-d'}}</td>
                                         <td class=" ">{{contract.dateend|date:'Y-m-d'}}</td>
                                         <td class=" ">{{contract.service.service}}</td>
+                                        <td class=" ">{{contract.mensualprice}}</td>
 
                                         <td class=" last">
                                             <div><button onclick="window.location.href='{% url 'contracts:edit' contract.id %}'" style="float:left;" class="btn btn-success btn-xs">Editar</button></div>
