@@ -5,9 +5,12 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Contract
+from .models import ContractDetails
 from clients.models import Client
 from services.models import Service
 import json
+from datetime import datetime
+from datetime import timedelta
 
 # Create your views here.
 def contracts(request):
@@ -40,6 +43,15 @@ def insert(request):
     selected_service = Service.objects.get(service=service)
     contract = Contract(contract=contract, client=selected_client, description=description, datestart=datestart, dateend=dateend, service=selected_service, mensualprice=mensualprice  )
     contract.save()
+
+    start_date = datetime.strptime(datestart,'%Y-%m-%d')
+    end_date = datetime.strptime(dateend,'%Y-%m-%d')
+    delta = timedelta(days=31)
+    while (start_date <= end_date):
+        contractdetail = ContractDetails(contract=contract, date=start_date)
+        contractdetail.save()
+        start_date += delta
+
 
     return HttpResponseRedirect('/contracts/')
 

@@ -21,4 +21,16 @@ class Contract(models.Model):
         verbose_name = "contrato"
         verbose_name_plural = "contratos"
         ordering = [ '-created']
-    
+
+class ContractDetails(models.Model):
+    contract = models.ForeignKey(Contract, on_delete=models.CASCADE, null=True)
+    date = models.DateField(verbose_name="Fecha a pagar")
+    payment_date = models.DateField(verbose_name="Fecha de pago", null=True)
+    payment = models.PositiveIntegerField(verbose_name="Monto pagado", null=True)
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
+    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de actualización", null=True)
+
+    class Meta:
+        verbose_name = "detallo de pago contrato"
+        verbose_name_plural = "detalle de pagos contrato"
+        ordering = [ '-created']

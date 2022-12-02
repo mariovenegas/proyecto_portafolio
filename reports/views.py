@@ -1,6 +1,3 @@
-from django.shortcuts import render
-
-# Create your views here.
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
@@ -8,6 +5,10 @@ from django.views.generic import View
 
 from django.http import FileResponse
 import io 
+
+from contracts.models import Contract
+from contracts.models import ContractDetails
+
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
@@ -116,3 +117,19 @@ def reports(request):
 
     
     return render(request, "reports/reports.html", {'clients':clients,'selected_client':client,'advisorys':advisorys,'capacitations':capacitations,'visits':visits})
+
+def payments(request):
+
+    payments=[]
+    try:
+        contracts = Contract.objects.all().order_by('id')
+    except:
+        contracts = None
+
+    for contract in contracts:
+        contractdetails = ContractDetails.objects.filter(contract=contract).order_by('id')
+        payments.extend(contractdetails)
+
+    
+    return render(request, "reports/payments_report.html", {'payments':payments})
+

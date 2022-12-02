@@ -28,7 +28,7 @@
           <li class><a href="{% url 'administrators:administrators' %}"><i class="fa fa-key"></i> Administradores </a></li>
           <li class><a href="{% url 'users:users' %}"><i class="fa fa-users"></i> Usuarios de cliente </a></li>
           <li class><a href="{% url 'contracts:contracts' %}"><i class="fa fa-money"></i> Contratos </a></li>
-          <li class><a href=""><i class="fa fa-money"></i> Controlar pago </a></li>
+          <li class><a href="{% url 'payments:payments' %}"><i class="fa fa-money"></i> Pagos </a></li>
           <li class><a><i class="fa fa-search"></i> Visualizar actividades <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu" style="display: none;">
               <li><a href="{% url 'advisorys:review_advisory' %}">Asesorías</a></li>
@@ -37,6 +37,7 @@
             </ul>
           </li>
           <li class><a href="{% url 'reports:reports' %}"><i class="fa fa-newspaper-o"></i> Generar reporte cliente </a></li>
+          <li class><a href="{% url 'reports:payments' %}"><i class="fa fa-newspaper-o"></i> Generar reporte Global </a></li>
         </ul>
       </div>
     </div>
